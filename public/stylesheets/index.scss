@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  font-family: 'Helvetica Neue', Helvetica,Arial, sans-serif;
+  background-color: #f1f5f8;
+}
+
+.index_wrapper {
+  .top {
+    background-color: #0078d8;
+    padding: 50px;
+    .login_content {
+      .login_form {
+        margin-left: 60%;
+      }
+    }
+  } 
+  .bottom {
+
+  } 
+  .footer {
+
+  }
+}
+
+.change-color {
+  background-color: #e7f1f8;
+}
+
+.change-register-color {
+  background-color: #74b1f7;
+  color: white;
+  border: none;
+}
