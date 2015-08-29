@@ -1,9 +1,16 @@
 var express = require('express');
 var path = require('path');
+require('./models');
+var configure = require('./configure');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var flash = require('connect-flash');
+var crypto = require('crypto');
 
 var routes = require('./router');
 // var users = require('./routes/users');
@@ -13,6 +20,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(flash());
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public/images/static', 'zhihu_favicon.ico')));
@@ -21,6 +29,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: configure.cookieSecret,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 3 * 24 * 60 * 60 // 3 days   
+  })
+}));
 
 app.use('/', routes);
 // app.use('/users', users);

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <script type="text/javascript" src="/javascripts/jquery-2.1.4.js"></script>
+  <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
+  <script type="text/javascript" src="/javascripts/index.js"></script>
+  <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<body>
+  <div class="index_wrapper">
+    <div class="top">
+      <div class="login_form">
+        <div class="logo"></div>
+        <div class="form-content">
+          <form class="form-horizontal register-form" action="/register" method="post">
+            <div class="form-group">
+              <div class="col-md-5">
+                <span class="whitelabel">注册账号</span>
+                <div class="switch-signin">
+                  <a href="#signin" class="whitelabel js-signin">登录<i class="arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-5">
+                <input type="text" name="username" class="form-control change-input-form-color" placeholder="姓名">  
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-5">
+                <input type="text" name="phoneoremail" class="form-control change-input-form-color" placeholder=" 手机号或邮箱">  
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-5">
+                <input type="text" name="password" class="form-control change-input-form-color" placeholder=" 密码（不少于6位）" >
+              </div>
+            </div>
+            <% if (err) { %>
+              <div class="form-group">
+                <div class="col-md-5">
+                  <label class="label label-danger col-md-12" style="font-size:1em;"><%= err %></label>
+                </div>
+              </div>
+            <% } %>
+            <div class="form-group">
+              <div class="col-md-5">
+                <input type="submit" class="form-control change-register-form-color" value="注册知乎">
+              </div>
+            </div>
+            <label style="color:white;">社交账号登录···搁置</label>
+          </form>
+          <form class="form-horizontal login-form" action="/login" method="post">
+            <div class="form-group">
+              <div class="col-md-5">
+                <span class="whitelabel">登录知乎</span>
+                <div class="switch-signin">
+                  <a href="#register" class="whitelabel js-register">注册<i class="arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-5">
+                <input type="text" name="phoneoremail" class="form-control change-input-form-color" placeholder=" 手机号或邮箱">  
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-5">
+                <input type="text" name="password" class="form-control change-input-form-color" placeholder=" 密码" >
+              </div>
+            </div>
+            <% if (loginErr) { %>
+              <div class="form-group">
+                <div class="col-md-5">
+                  <label class="label label-danger col-md-12" style="font-size:1em;"><%= loginErr %></label>
+                </div>
+              </div>
+              <script>
+                $('.register-form').css({ 'display': 'none' });  $('.login-form').css({ 'display': 'block' });
+              </script>
+            <% } %>            
+            <div class="form-group">
+              <div class="col-md-5">
+                <input type="submit" class="form-control change-register-form-color" value="登录">
+              </div>
+            </div>
+            <div class="checkbox">
+              <label class="whitelabel"><input type="checkbox">记住我</label>
+            </div>
+            <label style="color:white;">社交账号登录···搁置</label>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="bottom">这是bottom···搁置</div>
+    <div class="footer">这是footer···搁置</div>
+  </div>
+  
+</body>
+</html>
