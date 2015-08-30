@@ -10,5 +10,8 @@ db.once('open', function () {
 });
 
 require('./user');
+require('./question');
+
 
 exports.User = mongoose.model('User');
+exports.Question = mongoose.model('Question');

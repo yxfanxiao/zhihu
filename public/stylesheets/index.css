@@ -1,64 +1,55 @@
 body {
   margin: 0;
   padding: 0;
-  font-size: 15px;
-  line-height: 1.7;
-  font-family: 'Helvetica Neue', Helvetica,Arial, sans-serif;
-  background-color: #f1f5f8;
 }
 
-.index_wrapper .top {
-  background-color: #0078d8;
-  padding: 50px;
+.index-zhihu .top-navbar .navbar-zhihu {
+  background-color: #0661bd;
 }
-.index_wrapper .top .login_form {
-  position: relative;
-  margin-left: 60%;
-}
-.index_wrapper .top .login_form .logo {
-  position: absolute;
-  left: -500px;
-  top: 70px;
-  height: 124px;
-  width: 345px;
-  background-image: url(/images/static/logo.png);
-}
-.index_wrapper .top .login_form .form-content .switch-signin {
-  float: right;
-}
-.index_wrapper .top .login_form .form-content .switch-signin .js-signin, .index_wrapper .top .login_form .form-content .switch-signin .js-register {
-  transition: 0.1s all ease-in-out;
-}
-.index_wrapper .top .login_form .form-content .switch-signin .js-signin:hover, .index_wrapper .top .login_form .form-content .switch-signin .js-register:hover {
-  margin-right: 3px;
-}
-.index_wrapper .top .login_form .form-content .switch-signin a {
-  text-decoration: none;
-}
-.index_wrapper .top .login_form .form-content .switch-signin .arrow-right {
-  position: relative;
-  display: inline-block;
-  vertical-align: -3px;
-  margin-left: 7px;
-  height: 18px;
-  width: 18px;
-  background-image: url(/images/static/signup-index.png);
-  background-repeat: no-repeat;
-  background-position: 0 0;
-}
-.index_wrapper .top .login_form .form-content .whitelabel {
+.index-zhihu .top-navbar .navbar-zhihu .brand-zhihu {
   color: white;
+  font-size: 2em;
 }
-.index_wrapper .top .login_form .form-content .login-form {
-  display: none;
-}
-
-.change-input-form-color {
-  background-color: #e7f1f8;
-}
-
-.change-register-form-color {
-  background-color: #74b1f7;
+.index-zhihu .top-navbar .navbar-zhihu .top-navbar-ask {
+  background-color: #0e79e9;
   color: white;
   border: none;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: white;
+  background-color: #055aaf;
+}
+
+.dropdown-menu {
+  background-color: #095fb3;
+  border: none;
+}
+
+.form-control {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.question_tag {
+  width: 20%;
+  display: inline-block;
+}
+
+.tag {
+  color: #225599;
+  background-color: #eff6fa;
+  min-width: 30px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.tag:hover {
+  color: white;
+  background-color: #225599;
 }

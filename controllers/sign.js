@@ -4,6 +4,9 @@ var crypto = require('crypto');
 var password_salt = configure.password_salt;
 
 exports.homepage = function(req, res, next) {
+  if (req.session.user) {
+    res.redirect('/index');
+  }
   res.render('homepage', {
     title: 'zhihu-与世界分享你的知识', 
     err: req.flash('err').toString(),
@@ -57,4 +60,9 @@ exports.login = function (req, res, next) {
     req.session.user = user;
     return res.redirect('/index');
   });
+};
+
+exports.logout = function (req, res, next) {
+  req.session.user = null;
+  res.redirect('/');
 };
