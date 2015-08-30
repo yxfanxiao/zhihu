@@ -3,8 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <title>Question</title>
+  <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+  <script type="text/javascript" src="/javascripts/jquery-2.1.4.js"></script>
+  <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
+  <script type="text/javascript" src="/javascripts/question.js"></script>
+  <link rel="stylesheet" href="/stylesheets/question.css">
 </head>
 <body>
-  <%=  question.title   %>
+  <div class="question-zhihu col-md-6 col-md-offset-3">
+    <div class="left-content col-md-8">
+      <div class="question-content">
+        <div class="tags">
+          <% question.tags.forEach(function (tag) { %>
+           <a href="/tag/<%= tag %>"><span class="badge tag"><%= tag %></span></a>
+          <% }); %>
+        </div>
+        <h1 class="question_title"><%= question.title %></h1>
+        <div class="question_description">  <%= question.description %></div>
+        <div class="question_footer">
+          <a href="" class="annotation-color"><span class="glyphicon  glyphicon-comment"></span> 100条评论`还没做评论</a>
+          <a href="" class="annotation-color"><span class="glyphicon  glyphicon-share-alt"></span>分享</a>
+          <a href="" class="annotation-color"><span class="glyphicon  glyphicon-plus"></span>邀请回答</a>
+          <a href="" class="annotation-color pull-right"><span class="  glyphicon glyphicon-flash"></span>举报</a>
+        </div> 
+      </div>
+     <div class="question-answer">
+        <div class="question-answer-top">
+          <span class="question-answer-number"><%= question.comment_id.length %>个回答</span>
+          <div class="answer-sort">
+            <span class="sort-by-vote">按投票排序<span class="glyphicon glyphicon-sort"></span></span>
+            <a href="" class="sort-by-time">按时间排序</a>
+          </div>
+        </div>
+        <div class="answer-left">
+          <div class="up"></div>
+          <div class="down"></div>
+        </div>
+        <div class="answer-content">
+          <span>具体的回复等做了再回来填</span>
+        </div>
+     </div>     
+     </div>
+     <div class="right-content col-md-4">
+       <div class="test">TEST RIGHT</div>
+     </div>
+  </div>
 </body>
 </html>

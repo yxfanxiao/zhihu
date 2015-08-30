@@ -16,9 +16,18 @@ exports.post = function (req, res, next) {
     if (err) {
       res.send('提问出错了');  
     }
-    res.render('question/question', {
-      question: question
-    });
+    res.redirect('/question/' + question._id);
   });
-  
+};
+
+exports.view = function (req, res, next) {
+    var question_id = req.params.id;
+    Question.findQuestionById(question_id, function (err, q) {
+      if (err) {
+        res.send('找不到这个问题~~！');
+      }
+      res.render('question/question', {
+        question: q
+      });  
+    });
 };

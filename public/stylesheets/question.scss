@@ -3,11 +3,10 @@ body {
   padding: 0;
   font-size: 15px;
   line-height: 1.7;
-  font-family: 'Helvetica Neue', Helvetica,Arial, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 .question-zhihu {
   border: 1px solid black;
-  /*height: 200px;*/
   .left-content {
     .question-content {
       .tags {
@@ -16,12 +15,14 @@ body {
       .question_title {
         margin-top: 15px;
         font-weight: 700;
-        font-size: 18px;
+        font-size: 20px;
+        line-height: 1.7;
         color: #222;
       }
       .question_description {
         margin-top: 13px;
-        font-size: 13px;
+        font-size: 14px;
+        line-height: 1.6;
       }
       .question_footer {
         padding: 10px 0;
@@ -42,8 +43,24 @@ body {
         }
         .answer-sort {
           float: right;
+          border: 1px solid transparent;
+          color: #999;
+          .sort-by-vote {
+            padding: 3px 10px;
+          }
+          .sort-by-time {
+            padding: 3px 10px;
+            display: none;
+            text-decoration: none;
+          }
         }
       }
+    }
+  }
+  .right-content {
+    .test {
+      height: 300px;
+      border: 1px solid black;
     }
   }
 }

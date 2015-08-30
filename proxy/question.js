@@ -9,3 +9,7 @@ exports.newQuestionSave = function (author_id, title, description, tags, callbac
   question.tags = tags;
   question.save(callback);
 };
+
+exports.findQuestionById = function (question_id, callback) {
+  Question.findById(question_id, callback);
+};

@@ -66,10 +66,10 @@
               <input type="text" id="tag3" name="tag3" placeholder="" class="form-control question_tag" disabled>
             </div>
             <script>
-              $("#tag1").click(function () {
+              $("#tag1").focus(function () {
                 $("#tag2").attr("disabled", false);
               });
-              $("#tag2").click(function () {
+              $("#tag2").focus(function () {
                 $("#tag3").attr("disabled", false);
               });
             </script>
