@@ -11,7 +11,8 @@ db.once('open', function () {
 
 require('./user');
 require('./question');
-
+require('./answer');
 
 exports.User = mongoose.model('User');
 exports.Question = mongoose.model('Question');
+exports.Answer = mongoose.model('Answer');

@@ -73,14 +73,25 @@
                 $("#tag3").attr("disabled", false);
               });
             </script>
-            <div class="col-md-offset-9">
-              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-              <button type="submit" class="btn btn-primary">发布</button>
+            <div class="modal-bottom-warning-post">
+              <div class="col-md-8 col-md-offset-1">
+                <label class="label-warning" id="post_error"></label>
+              </div>
+              <div class="col-md-offset-9">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary">发布</button>
+              </div>              
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>    
+  <% if (err) { %>
+    <script>
+      $("#submit_question").modal("show");
+      $("#post_error").html("<span class='glyphicon glyphicon-exclamation-sign'></span><%= err %>");
+    </script>
+  <% } %>
   </body>
 </html>

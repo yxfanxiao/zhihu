@@ -1,4 +1,5 @@
 $(function () {
+  // 问题界面的2种排序
   $('.answer-sort').hover(function () {
     $('.sort-by-time').css({
       'display': 'block',
@@ -15,5 +16,9 @@ $(function () {
   });
   $('.sort-by-time').hover(function () {
     $(this).css({'background': '#eee'});
+  }, function () {
+    $(this).css({'background': 'transparent'});  
   });
+
+  // 
 });

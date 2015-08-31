@@ -6,7 +6,6 @@ body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 .question-zhihu {
-  border: 1px solid black;
   .left-content {
     .question-content {
       .tags {
@@ -30,6 +29,39 @@ body {
       }
     }
     .question-answer {
+      .answer-content {
+        position: relative;
+        margin: 30px 0;
+        /*padding-bottom: 20px;*/
+        border-bottom: 1px solid #eee;
+        .answer-content-top {
+          margin-bottom: 10px;
+        }
+        .answer-content-bottom {
+          margin: 10px 0;
+        }
+        .answer-left {
+          position: absolute;
+          left: -70px;
+          height: 50px;
+          width: 40px;
+          text-align: center;
+          .up {
+            padding: 5px 10px;
+            background-color: #EFF6FA;
+            font-size: 15px;
+            margin-bottom: 2px;
+            .h5 {
+              margin: 0;
+            }
+          }
+          .down {
+            padding: 5px 10px;
+            background-color: #EFF6FA;
+            font-size: 15px;
+          }
+        }
+      }
       .question-answer-top {
         padding-bottom: 10px;
         border-bottom: 1px solid #eee;
@@ -56,11 +88,58 @@ body {
         }
       }
     }
+    .write-answer {
+      padding: 20px 0;
+      /*border-top: 1px solid #eee;*/
+      .write-answer-user {
+        margin: 5px 0px;
+      }
+      .btn {
+        background-color: #1472CF;
+      }
+    }
   }
   .right-content {
-    .test {
-      height: 300px;
-      border: 1px solid black;
+    margin-left: 30px;
+    .linked-website {
+      margin-top: 20px;
+      img {
+        margin: 10px 0;
+        border-radius: 5px;
+        height: auto;
+        width: 250px;
+        /*width: 100%;*/
+      }
+    }
+    .focus-on-question {
+      margin-top: 30px;
+      .focus-on-question-number {
+        margin-top: 8px;
+        color: #999;
+      }
+      .btn {
+        background-color: #8AB923;
+      }
+    }
+    .related-question {
+      margin: 20px 0px;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      ul {
+        padding-left: 10px; 
+        li {
+          list-style: none;
+          a {
+            line-height: 1.7;
+            font-size: 15px;
+          }
+          .answer-number {
+            margin-left: 10px;
+            font-size: 15px;
+            color: #999;
+          }
+        }
+      }
     }
   }
 }
@@ -71,6 +150,8 @@ body {
   min-width:30px;
   font-size: 13px;
   line-height: 1.7;
+  font-weight: 500;
+  font-family: Arial;
   &:hover {
     color: white;
     background-color: #225599;
@@ -79,4 +160,27 @@ body {
 .annotation-color {
   color: #999;
   margin-right: 5px;
+}
+.small_avatar {
+  width: 25px;
+  height: 25px;
+}
+
+.zhihu-footer {
+  border-top: 1px solid #eee;
+  margin-top: 20px; 
+  padding: 20px 10px;
+  color: #999;
+  text-align: right;
+  ul {
+    text-decoration: none;
+    list-style: none;
+    li {
+      margin: 3px 5px;
+      display: inline;
+      a {
+        color: #999;
+      }
+    }
+  }
 }

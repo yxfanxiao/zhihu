@@ -40,16 +40,12 @@ body {
 .question_tag {
   width: 20%;
   display: inline-block;
+  margin: 0 2px;
 }
 
-.tag {
-  color: #225599;
-  background-color: #eff6fa;
-  min-width: 30px;
-  font-size: 13px;
-  line-height: 1.7;
-}
-.tag:hover {
-  color: white;
-  background-color: #225599;
+#post_error {
+  padding: 5px 10px;
+  color: red;
+  background-color: transparent;
+  font-size: 20px;
 }

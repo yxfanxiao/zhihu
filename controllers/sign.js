@@ -5,9 +5,9 @@ var password_salt = configure.password_salt;
 
 exports.homepage = function(req, res, next) {
   if (req.session.user) {
-    res.redirect('/index');
+    return res.redirect('/index');
   }
-  res.render('homepage', {
+  return res.render('homepage', {
     title: 'zhihu-与世界分享你的知识', 
     err: req.flash('err').toString(),
     loginErr: req.flash('loginErr').toString()
@@ -64,5 +64,5 @@ exports.login = function (req, res, next) {
 
 exports.logout = function (req, res, next) {
   req.session.user = null;
-  res.redirect('/');
+  return res.redirect('/');
 };

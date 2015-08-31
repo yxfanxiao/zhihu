@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/stylesheets/question.css">
 </head>
 <body>
-  <div class="question-zhihu col-md-6 col-md-offset-3">
+  <div class="question-zhihu col-md-8 col-md-offset-2">
     <div class="left-content col-md-8">
       <div class="question-content">
         <div class="tags">
@@ -27,7 +27,7 @@
           <a href="" class="annotation-color pull-right"><span class="  glyphicon glyphicon-flash"></span>举报</a>
         </div> 
       </div>
-     <div class="question-answer">
+      <div class="question-answer">
         <div class="question-answer-top">
           <span class="question-answer-number"><%= question.comment_id.length %>个回答</span>
           <div class="answer-sort">
@@ -35,18 +35,104 @@
             <a href="" class="sort-by-time">按时间排序</a>
           </div>
         </div>
-        <div class="answer-left">
-          <div class="up"></div>
-          <div class="down"></div>
-        </div>
-        <div class="answer-content">
-          <span>具体的回复等做了再回来填</span>
-        </div>
-     </div>     
-     </div>
-     <div class="right-content col-md-4">
-       <div class="test">TEST RIGHT</div>
-     </div>
+        <% answers.forEach(function (answer, index) { %>
+          <div class="answer-content">
+            <div class="answer-left">
+              <div class="up">
+                <span class="glyphicon glyphicon-triangle-top"></span>
+                <div class="h5"><%= answer.ups.length %></div>
+              </div>
+              <div class="down">
+                <span class="glyphicon glyphicon-triangle-bottom"></span>
+              </div>
+            </div>        
+            <div class="answer-content-top">
+              <span class="h3"><%= answer.author_name %></span>
+              <img class="small_avatar pull-right" src="<%= answer.author_avatar %>" alt="头像">
+            </div>
+            <div class="answer-content-body">
+              <span><%= answer.content %></span>
+            </div>
+            <div class="answer-content-bottom">
+              <span>发布于 <%= answer.create_at %></span>
+              <a href="">添加评论</a>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+      <% if (user) { %>
+        <div class="write-answer">
+          <div class="write-answer-user">
+            <span class="h3"><%= user.name %></span>
+            <img class="small_avatar pull-right" src="<%= user.avatar %>" alt="头像">
+          </div>
+          <% if (uploadPicErr) { %>
+            <span><%= uploadPicErr %></span>
+          <% } %>
+<!--           <form action="/uploadPic" enctype="multipart/form-data" method="post">
+            <div class="form-group">
+              <input class="form-control" type="file" name="pic">
+              <input class="form-control" type="submit">
+            </div>
+          </form> -->
+          <form action="/answer/<%= question._id %>" class="write-answer-content" method="post">
+            <div class="form-group">
+              <textarea name="answer" class="form-control" id="textarea-answer" rows="8" placeholder="写下你的回答…上传图片功能已做，然而这里挖下了一个富文本编辑器的坑~~"></textarea>
+            </div>
+            <% if (answerErr) { %>
+              <label for="textarea-answer" class="label-danger" style="color:white;font-size:20px;border-radius:20px;padding:0 8px;"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;<%= answerErr %></label>
+            <% } %>
+            <input type="submit" class="btn btn-info pull-right" value="发布回答">
+          </form>
+        </div>  
+
+
+<!--     
+      <% if (pic) { %>
+          <script>
+            $("#textarea-answer").append('<img></img>');
+          </script>
+        <% } %>
+      <% } else { %>
+        <span>请先登录</span>   
+      <% } %> -->
+    </div>
+    <div class="right-content col-md-3">
+      <div class="focus-on-question">
+        <button class="btn btn-info">关注</button><br/>
+        <div class="focus-on-question-number"><span>x</span>人关注该问题</div>
+      </div>
+      <div class="linked-website">
+        <img src="/images/static/cnode_logo.png" alt="">
+      </div>
+      <div class="related-question">
+        <h5>相关问题</h5>
+        <ul>
+          <li><a href="">123qwqe456?</a><span class="answer-number">n个回答</span></li>
+          <li><a href="">123sad456?</a><span class="answer-number">n个回答</span></li>
+          <li><a href="">1236?</a><span class="answer-number">n个回答</span></li>
+          <li><a href="">16?</a><span class="answer-number">n个回答</span></li>
+          <li><a href="">sos?</a><span class="answer-number">n个回答</span></li>
+        </ul>
+      </div>
+      <div class="question-status">
+        <h5>问题状态</h5>
+        <span class="annotation-color">最近活动于2015-08-31</span><br/>
+        <span class="annotation-color">被浏览100次</span>
+      </div>
+      <div class="linked-website">
+        <img src="/images/static/zhihu_logo.jpg" alt="">
+      </div>
+    </div>
+    <div class="zhihu-footer col-md-12">
+      <span class="pull-left">© 2015 仿·知乎</span>
+      <ul>
+        <li><a href="">刘看山</a></li>
+        <li><a href="">知乎指南</a></li>
+        <li><a href="">建议反馈</a></li>
+        <li><a href="">知乎协议</a></li>
+      </ul>
+    </div>
   </div>
 </body>
 </html>
