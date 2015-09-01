@@ -20,5 +20,17 @@ $(function () {
     $(this).css({'background': 'transparent'});  
   });
 
-  // 
+  // 当点击回复日期的时候，答案出现一层渐变色
+  $('.answer-content-bottom-answer, #write-answer-point-myanswer').click(function () {
+    var content_body_id = $(this).data('linkto');
+    $('#' + content_body_id).css({
+      'background-color': '#FCFF86',
+      'transition': 'all 1s linear'
+    });
+    setTimeout(function () {
+      $('#' + content_body_id).css({
+        'background-color': 'transparent'
+      });
+    }, 1000);      
+  });
 });

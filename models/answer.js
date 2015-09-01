@@ -9,9 +9,10 @@ var AnswerSchema = new Schema({
   author_name: { type: String },
   author_avatar: { type: String },
   content: { type: String },
-  create_at: { type: Date, default: Date.now },
   update_at: { type: Date, default: Date.now },
+  create_at: { type: Date, default: Date.now },
   ups: [{ type: ObjectId }],
+  ups_number: { type: Number, default: 0 },
   downs: [{ type: ObjectId }],
   deleted: { type: Boolean, default: false }           // 软删除
 });
@@ -24,8 +25,8 @@ AnswerSchema.virtual('up_number').get(function () {
 
 AnswerSchema.index({ question_id: 1 });
 AnswerSchema.index({ author_id: 1 });
-AnswerSchema.index({ comment_id: 1 });
+AnswerSchema.index({ question_id: 1, author_id: 1 });
+AnswerSchema.index({ ups_number: -1 });
 AnswerSchema.index({ update_at: -1 });
 
 mongoose.model('Answer', AnswerSchema);
-

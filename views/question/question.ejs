@@ -21,7 +21,7 @@
         <h1 class="question_title"><%= question.title %></h1>
         <div class="question_description">  <%= question.description %></div>
         <div class="question_footer">
-          <a href="" class="annotation-color"><span class="glyphicon  glyphicon-comment"></span> 100条评论`还没做评论</a>
+          <a href="" class="annotation-color"><span class="glyphicon  glyphicon-comment"></span> <%= answers.length %>条评论</a>
           <a href="" class="annotation-color"><span class="glyphicon  glyphicon-share-alt"></span>分享</a>
           <a href="" class="annotation-color"><span class="glyphicon  glyphicon-plus"></span>邀请回答</a>
           <a href="" class="annotation-color pull-right"><span class="  glyphicon glyphicon-flash"></span>举报</a>
@@ -46,56 +46,63 @@
                 <span class="glyphicon glyphicon-triangle-bottom"></span>
               </div>
             </div>        
-            <div class="answer-content-top">
+            <div class="answer-content-top" id="answer-content-top-<%= answer._id %>">
               <span class="h3"><%= answer.author_name %></span>
               <img class="small_avatar pull-right" src="<%= answer.author_avatar %>" alt="头像">
             </div>
-            <div class="answer-content-body">
-              <span><%= answer.content %></span>
+            <div class="answer-content-body" id="answer-content-body-<%= answer._id %>">
+              <div><%= answer.content %></div> 
             </div>
             <div class="answer-content-bottom">
-              <span>发布于 <%= answer.create_at %></span>
+              <a href="#answer-content-top-<%= answer._id %>" class="answer-content-bottom-answer" data-linkto="answer-content-body-<%= answer.id %>">
+                <span>
+                  <% if (!answer.isEdited()) { %>
+                    发布于 <%= answer.create_at_isToday() %>
+                  <% } else { %>
+                    编辑于 <%= answer.update_at_isToday() %>
+                  <% } %>
+                </span>
+              </a>
               <a href="">添加评论</a>
             </div>
           </div>
         <% }); %>
       </div>
+
+
       <% if (user) { %>
-        <div class="write-answer">
-          <div class="write-answer-user">
-            <span class="h3"><%= user.name %></span>
-            <img class="small_avatar pull-right" src="<%= user.avatar %>" alt="头像">
+        <% if (myAnswer) { %>
+          <div class="write-answer">一个问题您只能回答一次，但您可以对
+            <a href="#answer-content-top-<%= myAnswer._id %>" data-linkto="answer-content-body-<%= myAnswer._id %>" id="write-answer-point-myanswer" class="h5 ">现有的答案</a>
+            进行修改
           </div>
-          <% if (uploadPicErr) { %>
-            <span><%= uploadPicErr %></span>
-          <% } %>
-<!--           <form action="/uploadPic" enctype="multipart/form-data" method="post">
-            <div class="form-group">
-              <input class="form-control" type="file" name="pic">
-              <input class="form-control" type="submit">
+        <% } else { %>
+          <div class="write-answer">
+            <div class="write-answer-user">
+              <span class="h3"><%= user.name %></span>
+              <img class="small_avatar pull-right" src="<%= user.avatar %>" alt="头像">
             </div>
-          </form> -->
-          <form action="/answer/<%= question._id %>" class="write-answer-content" method="post">
-            <div class="form-group">
-              <textarea name="answer" class="form-control" id="textarea-answer" rows="8" placeholder="写下你的回答…上传图片功能已做，然而这里挖下了一个富文本编辑器的坑~~"></textarea>
-            </div>
-            <% if (answerErr) { %>
-              <label for="textarea-answer" class="label-danger" style="color:white;font-size:20px;border-radius:20px;padding:0 8px;"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;<%= answerErr %></label>
+            <!--  <% if (uploadPicErr) { %>
+              <span><%= uploadPicErr %></span>
             <% } %>
-            <input type="submit" class="btn btn-info pull-right" value="发布回答">
-          </form>
-        </div>  
-
-
-<!--     
-      <% if (pic) { %>
-          <script>
-            $("#textarea-answer").append('<img></img>');
-          </script>
+            <form action="/uploadPic" enctype="multipart/form-data" method="post">
+              <div class="form-group">
+                <input class="form-control" type="file" name="pic">
+                <input class="form-control" type="submit">
+              </div>
+            </form> -->
+            <form action="/answer/<%= question._id %>" class="write-answer-content" method="post">
+              <div class="form-group">
+                <textarea name="answer" class="form-control" id="textarea-answer" rows="8" placeholder="写下你的回答…上传图片功能已做，然而这里挖下了一个富文本编辑器的坑~~"></textarea>
+              </div>
+              <% if (answerErr) { %>
+                <label for="textarea-answer" class="label-danger" style="color:white;font-size:20px;border-radius:20px;padding:0 8px;"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;<%= answerErr %></label>
+              <% } %>
+              <input type="submit" class="btn btn-info pull-right" value="发布回答">
+            </form>
+          </div>
         <% } %>
-      <% } else { %>
-        <span>请先登录</span>   
-      <% } %> -->
+      <% } %>
     </div>
     <div class="right-content col-md-3">
       <div class="focus-on-question">
@@ -108,11 +115,11 @@
       <div class="related-question">
         <h5>相关问题</h5>
         <ul>
-          <li><a href="">123qwqe456?</a><span class="answer-number">n个回答</span></li>
-          <li><a href="">123sad456?</a><span class="answer-number">n个回答</span></li>
-          <li><a href="">1236?</a><span class="answer-number">n个回答</span></li>
-          <li><a href="">16?</a><span class="answer-number">n个回答</span></li>
-          <li><a href="">sos?</a><span class="answer-number">n个回答</span></li>
+          <li><a href="">魔兽争霸3之后魔兽世wsaswww的？</a><span class="answer-number">n个回答</span></li>
+          <li><a href="">魔兽争霸3之后魔兽世wsaswww的？ </a><span class="answer-number">n个回答</span></li>
+          <li><a href="">魔兽世界玩家如何评价FF14? </a><span class="answer-number">n个回答</span></li>
+          <li><a href="">魔兽世界>会如何谢幕？</a><span class="answer-number">n个回答</span></li>
+          <li><a href="">魔兽专区的X档案揭露了很多魔兽世界的不为人知的恐怖秘密，其中自然也包括了我昨天讨论过的暗月马戏团。</a><span class="answer-number">n个回答</span></li>
         </ul>
       </div>
       <div class="question-status">

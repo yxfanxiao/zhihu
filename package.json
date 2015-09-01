@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bluebird": "^2.9.34",
     "body-parser": "~1.13.2",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^0.8.2",

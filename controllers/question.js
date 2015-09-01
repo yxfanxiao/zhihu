@@ -37,7 +37,8 @@ exports.post = function (req, res, next) {
 
 // 查看问题
 exports.view = function (req, res, next) {
-    var question_id = req.params.q_id;
+    var user = req.session.user,
+        question_id = req.params.q_id;
     Question.findQuestionById(question_id, function (err, q) {
       if (err) {
         return res.send('找不到这个问题~~！');
@@ -46,14 +47,17 @@ exports.view = function (req, res, next) {
         if (err) {
           return res.send('找回答时出现错误~~！');
         }
-        return res.render('question/question', {
-          question: q,
-          user: req.session.user,
-          uploadPicErr: req.flash('uploadPicErr').toString(),
-          pic: req.flash('pic').toString(),
-          answerErr: req.flash('answerErr').toString(),
-          answers: answers
-        });  
+        Answer.findIfHasAnswered(question_id, user._id, function (err, answer) {
+          return res.render('question/question', {
+            question: q,
+            user: req.session.user,
+            uploadPicErr: req.flash('uploadPicErr').toString(),
+            pic: req.flash('pic').toString(),
+            answerErr: req.flash('answerErr').toString(),
+            answers: answers,
+            myAnswer: answer
+          });
+        });
       });
     });
 };
