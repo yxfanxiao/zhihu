@@ -38,7 +38,7 @@
         <% answers.forEach(function (answer, index) { %>
           <div class="answer-content">
             <div class="answer-left">
-              <div class="up">
+              <div class="up" data-answer="<%= answer._id %>">
                 <span class="glyphicon glyphicon-triangle-top"></span>
                 <div class="h5"><%= answer.ups.length %></div>
               </div>

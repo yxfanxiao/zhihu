@@ -21,3 +21,14 @@ exports.answer = function (req, res, next) {
   });
 };
 
+exports.addUp = function (req, res, next) {
+  var answer_id = req.params.a_id;
+  var user = req.session.user;
+  Answer.getUpByAnswerId(answer_id, function (err, docs) {
+    var answer = {
+      a: docs.ups,
+      b: docs.ups_number
+    };
+    res.send(answer);
+  });
+};

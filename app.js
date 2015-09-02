@@ -4,6 +4,7 @@ require('./models');
 var configure = require('./configure');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var auth = require('./middlewares/auth');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
@@ -36,6 +37,9 @@ app.use(session({
     ttl: 3 * 24 * 60 * 60 // 3 days   
   })
 }));
+
+// auth 中间件
+app.use(auth.authUser);
 
 app.use('/', routes);
 // app.use('/users', users);

@@ -13,7 +13,6 @@ body {
   margin-top: 15px;
   font-weight: 700;
   font-size: 20px;
-  line-height: 1.7;
   color: #222;
 }
 .question-zhihu .left-content .question-content .question_description {
@@ -28,6 +27,7 @@ body {
 .question-zhihu .left-content .question-answer .answer-content {
   position: relative;
   margin: 30px 0;
+  min-height: 100px;
   /*padding-bottom: 20px;*/
   border-bottom: 1px solid #eee;
 }
@@ -44,7 +44,7 @@ body {
 .question-zhihu .left-content .question-answer .answer-content .answer-left {
   position: absolute;
   left: -60px;
-  height: 40px;
+  height: 30px;
   width: 35px;
   text-align: center;
 }
@@ -53,14 +53,24 @@ body {
   background-color: #EFF6FA;
   font-size: 15px;
   margin-bottom: 2px;
+  border-radius: 3px;
+}
+.question-zhihu .left-content .question-answer .answer-content .answer-left .up:hover {
+  background-color: #698ebf;
+  color: white;
 }
 .question-zhihu .left-content .question-answer .answer-content .answer-left .up .h5 {
   margin: 0;
 }
 .question-zhihu .left-content .question-answer .answer-content .answer-left .down {
-  padding: 5px 10px;
+  border-radius: 3px;
+  padding: 0 10px;
   background-color: #EFF6FA;
   font-size: 15px;
+}
+.question-zhihu .left-content .question-answer .answer-content .answer-left .down:hover {
+  background-color: #698ebf;
+  color: white;
 }
 .question-zhihu .left-content .question-answer .question-answer-top {
   padding-bottom: 10px;

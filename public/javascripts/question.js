@@ -33,4 +33,18 @@ $(function () {
       });
     }, 1000);      
   });
+
+  // 点赞，down
+  $('.up').click(function () {
+    var answer_id = $(this).data('answer');
+    $.ajax({
+      type: 'put',
+      url: '/up/'+answer_id,
+      dataType: 'json',
+      success: function (data) {
+        console.log(data);
+      }
+    });
+  });
 });
+

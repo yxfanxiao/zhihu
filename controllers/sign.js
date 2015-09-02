@@ -4,7 +4,9 @@ var crypto = require('crypto');
 var password_salt = configure.password_salt;
 
 exports.homepage = function(req, res, next) {
-  req.session.user = req.cookies.isRemembered ? req.cookies.isRemembered : null;
+  if (req.cookies.isRemembered) {
+    req.session.user = req.cookies.isRemembered;
+  }
   if (req.session.user) {
     return res.redirect('/index');
   }

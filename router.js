@@ -18,5 +18,6 @@ router.post('/question', question.post),                // 发布问题
 router.get('/question/:q_id', question.view);           // 查看问题
 router.post('/uploadPic', question.uploadPic);          // 上传图片
 router.post('/answer/:q_id', answer.answer);            // 提交评论
+router.put('/up/:a_id', answer.addUp);                     // 对回答点赞
 
 module.exports = router;

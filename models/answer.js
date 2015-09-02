@@ -19,9 +19,9 @@ var AnswerSchema = new Schema({
 
 AnswerSchema.plugin(BaseModel);
 
-AnswerSchema.virtual('up_number').get(function () {
-  return this.ups.length;
-});
+// AnswerSchema.virtual('up_number').get(function () {
+//   return this.ups.length;
+// });
 
 AnswerSchema.index({ question_id: 1 });
 AnswerSchema.index({ author_id: 1 });

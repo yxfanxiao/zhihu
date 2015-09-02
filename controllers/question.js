@@ -45,7 +45,7 @@ exports.view = function (req, res, next) {
       }
       Answer.findAnswerByQuestionId(question_id, function (err, answers) {
         if (err) {
-          return res.send('找回答时出现错误~~！');
+          return res.send('你还没登录呀~~！');
         }
         Answer.findIfHasAnswered(question_id, user._id, function (err, answer) {
           return res.render('question/question', {

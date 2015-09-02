@@ -20,3 +20,8 @@ exports.findAnswerByQuestionId = function (question_id, callback) {
 exports.findIfHasAnswered = function (question_id, author_id, callback) {
   Answer.findOne({ 'question_id': question_id, 'author_id': author_id }, callback);
 };
+
+// 得到Ups
+exports.getUpByAnswerId = function (ansert_id, callback) {
+  Answer.findById(ansert_id, callback);
+};

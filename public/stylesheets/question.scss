@@ -15,7 +15,7 @@ body {
         margin-top: 15px;
         font-weight: 700;
         font-size: 20px;
-      s  color: #222;
+        color: #222;
       }
       .question_description {
         margin-top: 13px;
@@ -31,6 +31,7 @@ body {
       .answer-content {
         position: relative;
         margin: 30px 0;
+        min-height: 100px;
         /*padding-bottom: 20px;*/
         border-bottom: 1px solid #eee;
         .answer-content-top {
@@ -46,7 +47,7 @@ body {
         .answer-left {
           position: absolute;
           left: -60px;
-          height: 40px;
+          height: 30px;
           width: 35px;
           text-align: center;
           .up {
@@ -54,14 +55,24 @@ body {
             background-color: #EFF6FA;
             font-size: 15px;
             margin-bottom: 2px;
+            border-radius: 3px;
+            &:hover {
+              background-color: #698ebf;
+              color: white;
+            }
             .h5 {
               margin: 0;
             }
           }
           .down {
-            padding: 5px 10px;
+            border-radius: 3px;
+            padding: 0 10px;
             background-color: #EFF6FA;
             font-size: 15px;
+             &:hover {
+              background-color: #698ebf;
+              color: white;
+            }
           }
         }
       }
