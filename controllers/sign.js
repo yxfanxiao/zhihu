@@ -4,9 +4,6 @@ var crypto = require('crypto');
 var password_salt = configure.password_salt;
 
 exports.homepage = function(req, res, next) {
-  if (req.cookies.isRemembered) {
-    req.session.user = req.cookies.isRemembered;
-  }
   if (req.session.user) {
     return res.redirect('/index');
   }
@@ -21,7 +18,6 @@ exports.register = function (req, res, next) {
   var name = req.body.username,
       phoneOrEmail = req.body.phoneoremail,
       password = req.body.password;
-  // 密码md5加盐加密
   if (name === '' || name === null) {
     req.flash('err', '用户名不能为空！');
     return res.redirect('/');
@@ -30,6 +26,7 @@ exports.register = function (req, res, next) {
     req.flash('err', '密码至少6位！');
     return res.redirect('/');
   }
+  // 密码md5加盐加密
   var md5 = crypto.createHash('md5'),
       password = md5.update(password + password_salt).digest('hex');
   User.newUserSave(name, phoneOrEmail, password, function (err, user) {
@@ -63,7 +60,7 @@ exports.login = function (req, res, next) {
     }
     // 记住密码 10天
     if (isRemember) {
-      res.cookie('isRemembered', user, { maxAge: 1000 * 60 * 60 *24 * 10 });
+      res.cookie('isRemembered', user, { maxAge: 1000 * 60 * 60 *24 * 30 });
     }
     req.session.user = user;
     return res.redirect('/index');
@@ -72,6 +69,6 @@ exports.login = function (req, res, next) {
 
 exports.logout = function (req, res, next) {
   req.session.user = null;
-  res.clearCookie('isRemembered', { maxAge: 1000 * 60 * 60 *24 * 10 });
+  res.clearCookie('isRemembered', { maxAge: 1000 * 60 * 60 *24 * 30 });
   return res.redirect('/');
 };
