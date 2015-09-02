@@ -9,11 +9,43 @@
   <script type="text/javascript" src="./javascripts/question.js"></script>
   <link rel="stylesheet" href="./stylesheets/question.css">  
 </head>
+<style>
+body {
+  min-width: 500px;
+}
+  .main {
+    background-color: yellow;
+    float:left;
+    width: 100%;
+  }
+  .mid {
+    padding: 0 200px 0 300px;
+  }
+  .left {
+    background-color: red;
+    float:left;
+    width:300px;
+    margin-left: -100%;
+  }
+  .right {
+    background-color: green;
+    float:left;
+    width: 200px;
+    margin-left: -200px;
+  }
+</style>
 <body>
-  <form action="/uploadPic" enctype="multipart/form-data">
+ <!--  <form action="/uploadPic" enctype="multipart/form-data">
     <input type="file" name="pic">
     <input type="submit">
-  </form>
- 
+  </form> -->
+  
+  <div class="main">
+    <div class="mid">main</div>
+  </div>
+  <div class="left">left</div>
+  <div class="right">right</div>
+
+
 </body>
 </html>

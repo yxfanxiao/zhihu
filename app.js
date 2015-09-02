@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: configure.cookieSecret,
+  secret: configure.sessionSecret,
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 3 * 24 * 60 * 60 // 3 days   

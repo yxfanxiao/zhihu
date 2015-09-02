@@ -17,6 +17,6 @@ router.get('/index', index.index);                      // 主页
 router.post('/question', question.post),                // 发布问题
 router.get('/question/:q_id', question.view);           // 查看问题
 router.post('/uploadPic', question.uploadPic);          // 上传图片
-router.post('/answer/:q_id', answer.answer);          // 提交评论
+router.post('/answer/:q_id', answer.answer);            // 提交评论
 
 module.exports = router;

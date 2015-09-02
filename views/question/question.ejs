@@ -21,7 +21,7 @@
         <h1 class="question_title"><%= question.title %></h1>
         <div class="question_description">  <%= question.description %></div>
         <div class="question_footer">
-          <a href="" class="annotation-color"><span class="glyphicon  glyphicon-comment"></span> <%= answers.length %>条评论</a>
+          <a href="" class="annotation-color"><span class="glyphicon  glyphicon-comment"></span> x条评论</a>
           <a href="" class="annotation-color"><span class="glyphicon  glyphicon-share-alt"></span>分享</a>
           <a href="" class="annotation-color"><span class="glyphicon  glyphicon-plus"></span>邀请回答</a>
           <a href="" class="annotation-color pull-right"><span class="  glyphicon glyphicon-flash"></span>举报</a>
@@ -29,7 +29,7 @@
       </div>
       <div class="question-answer">
         <div class="question-answer-top">
-          <span class="question-answer-number"><%= question.comment_id.length %>个回答</span>
+          <span class="question-answer-number"><%= answers.length %>个回答</span>
           <div class="answer-sort">
             <span class="sort-by-vote">按投票排序<span class="glyphicon glyphicon-sort"></span></span>
             <a href="" class="sort-by-time">按时间排序</a>

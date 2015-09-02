@@ -14,7 +14,7 @@ exports.formatDate_day = function (date) {
 
 exports.isToday = function (date) {
   return moment(date).calendar(null, {
-    sameDay: '今天HH:mm',
+    sameDay: 'HH:mm',
     nextDay: 'YYYY-MM-DD',
     nextWeek: 'YYYY-MM-DD',
     lastDay: '昨天 HH:mm',
