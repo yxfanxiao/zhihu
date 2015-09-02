@@ -15,14 +15,15 @@ moment.locale('zh-cn');
 //     lastWeek: 'YYYY-MM-DD'
 // });
 
-var date1 = moment("2015-09-01T15:00:05.424Z").unix(Number);
-var date2 = moment(new Date()).unix(Number);
-console.log(date1)
-console.log(date2)
-console.log(date1==date2)
+// var date1 = moment("2015-09-01T15:00:05.424Z").unix(Number);
+// var date2 = moment(new Date()).unix(Number);
+// console.log(date1)
+// console.log(date2)
+// console.log(date1==date2)
 
 
-
+var a = {}
+console.log(a == {})
 
 
 

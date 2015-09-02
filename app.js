@@ -1,20 +1,19 @@
+var configure = require('./configure');
 var express = require('express');
 var path = require('path');
 require('./models');
-var configure = require('./configure');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
-var auth = require('./middlewares/auth');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
+var auth = require('./middlewares/auth');
 var crypto = require('crypto');
 
 var routes = require('./router');
-// var users = require('./routes/users');
 
 var app = express();
 
@@ -25,6 +24,7 @@ app.use(flash());
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public/images/static', 'zhihu_favicon.ico')));
+// 现在是dev环境，上线要换
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,7 +42,6 @@ app.use(session({
 app.use(auth.authUser);
 
 app.use('/', routes);
-// app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
