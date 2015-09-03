@@ -39,9 +39,10 @@ $(function () {
   // 点赞
   $('.up').click(function () {
     var answer_id = $(this).data('answer'),
-        isUp = $(this).data('isUp'),
-        isDown = $(this).data('isDown'),
+        isUp = $(this).data('isup'),
+        isDown = $(this).data('isdown'),
         down_this = $(this).siblings('.down');
+    
     if (!isUp && !isDown) {
       up($(this), answer_id);
       return;
@@ -59,8 +60,8 @@ $(function () {
   $('.down').click(function () {
     var up_this = $(this).siblings('.up');
     var answer_id = $(up_this).data('answer'),
-        isUp = $(up_this).data('isUp'),
-        isDown = $(up_this).data('isDown');
+        isUp = $(up_this).data('isup'),
+        isDown = $(up_this).data('isdown');
     if (!isUp && !isDown) {
       down($(up_this), $(this), answer_id);
       return;
@@ -85,7 +86,7 @@ $(function () {
       if (data.ok == 1) {
         var number = $(up_value).text();
         $(up_value).text(parseInt(number) + 1);
-        $(up_this).data('isUp', true);
+        $(up_this).data('isup', true);
         $(up_this).css({
           'background-color':'#698ebf',
           'color': 'white'
@@ -104,7 +105,7 @@ $(function () {
       if (data.ok == 1) {
         var number = $(up_value).text();
         $(up_value).text(parseInt(number) - 1);
-        $(up_this).data('isUp', false);
+        $(up_this).data('isup', false);
         $(up_this).css({
           'background-color':'#EFF6FA',
           'color': '#698ebf'
@@ -120,7 +121,7 @@ $(function () {
       dataType: 'json'
       }).done(function (data) {
       if (data.ok == 1) {
-        $(up_this).data('isDown', true);
+        $(up_this).data('isdown', true);
         $(down_this).css({
           'background-color':'#698ebf',
           'color': 'white'
@@ -135,7 +136,7 @@ $(function () {
       url: '/answer/'+ answer_id + '/down',
       dataType: 'json'
     }).done(function (data) {
-        $(up_this).data('isDown', false);
+        $(up_this).data('isdown', false);
         $(down_this).css({
           'background-color':'#EFF6FA',
           'color': '#698ebf'

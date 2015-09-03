@@ -42,7 +42,7 @@
           <div class="answer-content">
             <% if(isUp[index] !== undefined) { %>
               <div class="answer-left">
-                  <div class="up" data-answer="<%= answer._id %>" data-isUp="true" data-isDown="false" style="background-color:#698ebf;color:white;">
+                  <div class="up" data-answer="<%= answer._id %>" data-isup="true" data-isdown="false" style="background-color:#698ebf;color:white;">
                   <span class="glyphicon glyphicon-triangle-top"></span>
                   <div class="h5"><%= answer.ups.length %></div>
                 </div>
@@ -52,7 +52,7 @@
               </div>   
             <% } else if (isDown[index] !== undefined) { %>
               <div class="answer-left">
-                  <div class="up" data-answer="<%= answer._id %>" data-isUp="false" data-isDown="true">
+                  <div class="up" data-answer="<%= answer._id %>" data-isup="false" data-isdown="true">
                   <span class="glyphicon glyphicon-triangle-top"></span>
                   <div class="h5"><%= answer.ups.length %></div>
                 </div>
@@ -62,7 +62,7 @@
               </div>   
             <% } else { %>
               <div class="answer-left">
-                  <div class="up" data-answer="<%= answer._id %>" data-isUp="false" data-isDown="false">
+                  <div class="up" data-answer="<%= answer._id %>" data-isup="false" data-isdown="false">
                   <span class="glyphicon glyphicon-triangle-top"></span>
                   <div class="h5"><%= answer.ups.length %></div>
                 </div>

@@ -62,13 +62,13 @@ exports.view = function (req, res, next) {
           answer.ups.forEach(function(up) {
             if (up == user_id) {
               isUp[index] = true;
-              return;
+              // return;
             }
           });
           answer.downs.forEach(function(down) {
             if (down == user_id) {
               isDown[index] = true;
-              return;
+              // return;
             }
           });
         });        
