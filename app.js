@@ -11,6 +11,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var auth = require('./middlewares/auth');
+var errorPageMiddleware = require('./middlewares/error_page');
 var crypto = require('crypto');
 
 var routes = require('./router');
@@ -21,6 +22,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(flash());
+app.use(errorPageMiddleware.errorPage);
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public/images/static', 'zhihu_favicon.ico')));

@@ -29,7 +29,7 @@ exports.post = function (req, res, next) {
 
   Question.newQuestionSave(user._id, title, description, tags, function (err, question) {
     if (err) {
-      return res.send('提问出错了');  
+      return res.render404('提问出错了');  
     }
     return res.redirect('/question/' + question._id);
   });
@@ -38,16 +38,44 @@ exports.post = function (req, res, next) {
 // 查看问题
 exports.view = function (req, res, next) {
     var user = req.session.user,
+        user_id = user._id,
         question_id = req.params.q_id;
     Question.findQuestionById(question_id, function (err, q) {
       if (err) {
-        return res.send('找不到这个问题~~！');
+        return res.render404('你似乎来到了没有知识存在的荒原……');
       }
       Answer.findAnswerByQuestionId(question_id, function (err, answers) {
-        if (err) {
-          return res.send('你还没登录呀~~！');
+        if (!user) {
+            return res.render('question/question', {
+              question: q,
+              answerErr: req.flash('answerErr').toString(),
+              answers: answers,
+              err: req.flash('err').toString()
+            });
         }
+        if (err) {
+          return res.render404('你似乎来到了没有知识存在的荒原……');
+        }
+        var isUp = [],
+            isDown = [];
+        answers.forEach(function(answer, index) {
+          answer.ups.forEach(function(up) {
+            if (up == user_id) {
+              isUp[index] = true;
+              return;
+            }
+          });
+          answer.downs.forEach(function(down) {
+            if (down == user_id) {
+              isDown[index] = true;
+              return;
+            }
+          });
+        });        
         Answer.findIfHasAnswered(question_id, user._id, function (err, answer) {
+          if (err) {
+            return res.render404('你似乎来到了没有知识存在的荒原……');
+          }
           return res.render('question/question', {
             question: q,
             // 图片上传之后再补进去
@@ -56,7 +84,9 @@ exports.view = function (req, res, next) {
             answerErr: req.flash('answerErr').toString(),
             answers: answers,
             myAnswer: answer,
-            err: req.flash('err').toString()
+            err: req.flash('err').toString(),
+            isUp: isUp,
+            isDown: isDown
           });
         });
       });

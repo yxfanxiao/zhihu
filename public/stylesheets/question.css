@@ -49,7 +49,7 @@ body {
   text-align: center;
 }
 .question-zhihu .left-content .question-answer .answer-content .answer-left .up {
-  padding: 5px 10px;
+  padding: 5px 0px;
   background-color: #EFF6FA;
   font-size: 15px;
   margin-bottom: 2px;

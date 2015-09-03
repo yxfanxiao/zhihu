@@ -21,7 +21,20 @@ exports.findIfHasAnswered = function (question_id, author_id, callback) {
   Answer.findOne({ 'question_id': question_id, 'author_id': author_id }, callback);
 };
 
-// 得到Ups
-exports.getUpByAnswerId = function (ansert_id, callback) {
-  Answer.findById(ansert_id, callback);
+// 增加Up
+exports.addUpByAnswerId = function (answer_id, user_id, callback) {
+  Answer.update({ '_id': answer_id }, { $push:{ 'ups': user_id }, $inc:{ 'ups_number': 1 }}, callback);
+};
+// 撤销Up
+exports.cancelUpByAnswerId = function (answer_id, user_id, callback) {
+  Answer.update({ '_id': answer_id }, { $pull:{ 'ups': user_id }, $inc:{ 'ups_number': -1 }}, callback);
+};
+
+// 增加Down
+exports.addDownByAnswerId = function (answer_id, user_id, callback) {
+  Answer.update({ '_id': answer_id }, { $push:{ 'downs': user_id }}, callback);
+};
+// 撤销Down
+exports.cancelDownByAnswerId = function (answer_id, user_id, callback) {
+  Answer.update({ '_id': answer_id }, { $pull:{ 'downs': user_id }}, callback);
 };

@@ -34,17 +34,116 @@ $(function () {
     }, 1000);      
   });
 
-  // 点赞，down
+
+  // 诶，“点赞功能”，感觉写了一晚上屎一样的代码！！心情都变low了。
+  // 点赞
   $('.up').click(function () {
-    var answer_id = $(this).data('answer');
+    var answer_id = $(this).data('answer'),
+        isUp = $(this).data('isUp'),
+        isDown = $(this).data('isDown'),
+        down_this = $(this).siblings('.down');
+    if (!isUp && !isDown) {
+      up($(this), answer_id);
+      return;
+    }
+    if (!isUp && isDown) {
+      cancelDown($(this), down_this, answer_id);
+      return;
+    }
+    if(isUp && !isDown) {
+      cancelUp($(this), answer_id);
+      return;
+    }
+  });
+  // down
+  $('.down').click(function () {
+    var up_this = $(this).siblings('.up');
+    var answer_id = $(up_this).data('answer'),
+        isUp = $(up_this).data('isUp'),
+        isDown = $(up_this).data('isDown');
+    if (!isUp && !isDown) {
+      down($(up_this), $(this), answer_id);
+      return;
+    }
+    if (!isUp && isDown) {
+      cancelDown($(up_this), $(this), answer_id);
+      return;
+    }
+    if(isUp && !isDown) {
+      cancelUp($(up_this), answer_id);
+      return;
+    }
+  });
+
+  function up (up_this, answer_id) {
+    var up_value = $(up_this).children('.h5');
+    $.ajax({
+      type: 'post',
+      url: '/answer/'+ answer_id + '/up',
+      dataType: 'json'
+    }).done(function (data) {
+      if (data.ok == 1) {
+        var number = $(up_value).text();
+        $(up_value).text(parseInt(number) + 1);
+        $(up_this).data('isUp', true);
+        $(up_this).css({
+          'background-color':'#698ebf',
+          'color': 'white'
+        });
+      }}).fail(function () {
+      alert('请先登录');
+    });     
+  }  
+  function cancelUp (up_this, answer_id) {
+    var up_value = $(up_this).children('.h5');
     $.ajax({
       type: 'put',
-      url: '/up/'+answer_id,
+      url: '/answer/'+ answer_id + '/up',
       dataType: 'json',
-      success: function (data) {
-        console.log(data);
-      }
-    });
-  });
+    }).done(function (data) {
+      if (data.ok == 1) {
+        var number = $(up_value).text();
+        $(up_value).text(parseInt(number) - 1);
+        $(up_this).data('isUp', false);
+        $(up_this).css({
+          'background-color':'#EFF6FA',
+          'color': '#698ebf'
+        });
+      }}).fail(function () {
+      alert('请先登录');
+    });   
+  }  
+  function down (up_this, down_this, answer_id) {
+    $.ajax({
+      type: 'post',
+      url: '/answer/'+ answer_id + '/down',
+      dataType: 'json'
+      }).done(function (data) {
+      if (data.ok == 1) {
+        $(up_this).data('isDown', true);
+        $(down_this).css({
+          'background-color':'#698ebf',
+          'color': 'white'
+        });
+      }}).fail(function () {
+      alert('请先登录');
+    }); 
+  }   
+  function cancelDown (up_this, down_this, answer_id) {
+    $.ajax({
+      type: 'put',
+      url: '/answer/'+ answer_id + '/down',
+      dataType: 'json'
+    }).done(function (data) {
+        $(up_this).data('isDown', false);
+        $(down_this).css({
+          'background-color':'#EFF6FA',
+          'color': '#698ebf'
+        });        
+      if (data.ok == 1) {
+      }}).fail(function () {
+      alert('请先登录');
+    });   
+  }   
 });
 

@@ -22,7 +22,7 @@
           <% }); %>
         </div>
         <h1 class="question_title"><%= question.title %></h1>
-        <div class="question_description">  <%= question.description %></div>
+        <div class="question_description"><%= question.description %></div>
         <div class="question_footer">
           <a href="" class="annotation-color"><span class="glyphicon  glyphicon-comment"></span> x条评论</a>
           <a href="" class="annotation-color"><span class="glyphicon  glyphicon-share-alt"></span>分享</a>
@@ -40,15 +40,37 @@
         </div>
         <% answers.forEach(function (answer, index) { %>
           <div class="answer-content">
-            <div class="answer-left">
-              <div class="up" data-answer="<%= answer._id %>">
-                <span class="glyphicon glyphicon-triangle-top"></span>
-                <div class="h5"><%= answer.ups.length %></div>
-              </div>
-              <div class="down">
-                <span class="glyphicon glyphicon-triangle-bottom"></span>
-              </div>
-            </div>        
+            <% if(isUp[index] !== undefined) { %>
+              <div class="answer-left">
+                  <div class="up" data-answer="<%= answer._id %>" data-isUp="true" data-isDown="false" style="background-color:#698ebf;color:white;">
+                  <span class="glyphicon glyphicon-triangle-top"></span>
+                  <div class="h5"><%= answer.ups.length %></div>
+                </div>
+                <div class="down">
+                  <span class="glyphicon glyphicon-triangle-bottom"></span>
+                </div>
+              </div>   
+            <% } else if (isDown[index] !== undefined) { %>
+              <div class="answer-left">
+                  <div class="up" data-answer="<%= answer._id %>" data-isUp="false" data-isDown="true">
+                  <span class="glyphicon glyphicon-triangle-top"></span>
+                  <div class="h5"><%= answer.ups.length %></div>
+                </div>
+                <div class="down" style="background-color:#698ebf;color:white;">
+                  <span class="glyphicon glyphicon-triangle-bottom"></span>
+                </div>
+              </div>   
+            <% } else { %>
+              <div class="answer-left">
+                  <div class="up" data-answer="<%= answer._id %>" data-isUp="false" data-isDown="false">
+                  <span class="glyphicon glyphicon-triangle-top"></span>
+                  <div class="h5"><%= answer.ups.length %></div>
+                </div>
+                <div class="down">
+                  <span class="glyphicon glyphicon-triangle-bottom"></span>
+                </div>
+              </div>                 
+            <% } %>
             <div class="answer-content-top" id="answer-content-top-<%= answer._id %>">
               <span class="h3"><%= answer.author_name %></span>
               <img class="small_avatar pull-right" src="<%= answer.author_avatar %>" alt="头像">
@@ -57,7 +79,7 @@
               <div><%= answer.content %></div> 
             </div>
             <div class="answer-content-bottom">
-              <a href="#answer-content-top-<%= answer._id %>" class="answer-content-bottom-answer" data-linkto="answer-content-body-<%= answer.id %>">
+              <a href="#answer-content-top-<%= answer._id %>" class="answer-content-bottom-answer" data-linkto="answer-content-body-<%= answer._id %>">
                 <span>
                   <% if (!answer.isEdited()) { %>
                     发布于 <%= answer.create_at_isToday() %>
@@ -72,7 +94,6 @@
         <% }); %>
       </div>
 
-
       <% if (user) { %>
         <% if (myAnswer) { %>
           <div class="write-answer">一个问题您只能回答一次，但您可以对
@@ -85,7 +106,7 @@
               <span class="h3"><%= user.name %></span>
               <img class="small_avatar pull-right" src="<%= user.avatar %>" alt="头像">
             </div>
-            <form action="/answer/<%= question._id %>" class="write-answer-content" method="post">
+            <form action="/question/<%= question._id %>/answer" class="write-answer-content" method="post">
               <div class="form-group">
                 <textarea name="answer" class="form-control" id="textarea-answer" rows="8" placeholder="写下你的回答…上传图片功能已做，然而这里挖下了一个富文本编辑器的坑~~"></textarea>
               </div>
@@ -96,6 +117,9 @@
             </form>
           </div>
         <% } %>
+      <% } else { %>
+        <div class="write-answer"><a href="/">登录</a>后才可答题
+          </div>
       <% } %>
     </div>
     <div class="right-content col-md-3">

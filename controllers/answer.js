@@ -21,14 +21,39 @@ exports.answer = function (req, res, next) {
   });
 };
 
+
 exports.addUp = function (req, res, next) {
   var answer_id = req.params.a_id;
   var user = req.session.user;
-  Answer.getUpByAnswerId(answer_id, function (err, docs) {
-    var answer = {
-      a: docs.ups,
-      b: docs.ups_number
-    };
-    res.send(answer);
+  Answer.addUpByAnswerId(answer_id, user._id, function (err, doc) {
+    // 插入成功 { ok: 1, nModified: 1, n: 1 }
+    // 返回码1，1条选中，被编辑
+    // 应该是没有错的...
+    res.send(doc);
+  });
+};
+
+exports.cancelUp = function (req, res, next) {
+  var answer_id = req.params.a_id;
+  var user = req.session.user;
+  Answer.cancelUpByAnswerId(answer_id, user._id, function (err, doc) {
+    console.log(doc)
+    res.send(doc);
+  });
+};
+
+exports.addDown = function (req, res, next) {
+  var answer_id = req.params.a_id;
+  var user = req.session.user;
+  Answer.addDownByAnswerId(answer_id, user._id, function (err, doc) {
+    res.send(doc);
+  });
+};
+exports.cancelDown = function (req, res, next) {
+  var answer_id = req.params.a_id;
+  var user = req.session.user;
+  Answer.cancelDownByAnswerId(answer_id, user._id, function (err, doc) {
+    console.log(doc)
+    res.send(doc);
   });
 };

@@ -10,14 +10,26 @@ router.get('/', sign.homepage);                         // 首页
 router.post('/register', sign.register);                // 注册页
 router.post('/login', sign.login);                      // 登录页
 router.get('/logout', sign.logout);                     // 登出页
-
-// 主页
-// 之后这里有权限问题！！！
 router.get('/index', index.index);                      // 主页
+
+// 提问
 router.post('/question', question.post),                // 发布问题
 router.get('/question/:q_id', question.view);           // 查看问题
+
+// 回答
+router.post('/question/:q_id/answer', answer.answer);    // 提交回答
+
+// 赞、down
+router.post('/answer/:a_id/up', answer.addUp);          // 对回答点赞
+router.put('/answer/:a_id/up', answer.cancelUp);        // 修改赞
+router.post('/answer/:a_id/down', answer.addDown);      // 对回答down
+router.put('/answer/:a_id/down', answer.cancelDown);    // 修改down
+
+
+// common
 router.post('/uploadPic', question.uploadPic);          // 上传图片
-router.post('/answer/:q_id', answer.answer);            // 提交评论
-router.put('/up/:a_id', answer.addUp);                  // 对回答点赞
+
+
+
 
 module.exports = router;
