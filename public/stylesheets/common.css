@@ -1,0 +1,87 @@
+.top-navbar {
+  width: 100%;
+  height: 50px;
+}
+.top-navbar .navbar-zhihu {
+  background-color: #0661bd;
+  padding-left: 16%;
+  /*padding-right: 16%;*/
+}
+.top-navbar .navbar-zhihu .brand-zhihu {
+  color: white;
+  font-size: 2em;
+}
+.top-navbar .navbar-zhihu .top-navbar-ask {
+  background-color: #0e79e9;
+  color: white;
+  border: none;
+}
+.top-navbar .navbar-zhihu .navbar-user {
+  margin-left: 18%;
+  min-width: 150px;
+}
+.top-navbar .navbar-zhihu .navbar-user img {
+  height: 25px;
+  width: 25px;
+  margin-right: 5px;
+}
+.top-navbar .navbar-zhihu .navbar-user .navbar-user-tab {
+  position: absolute;
+  width: 150px;
+  display: none;
+  top: 50px;
+  padding-left: 30px;
+}
+.top-navbar .navbar-zhihu .navbar-user:hover {
+  background-color: #055aaf;
+}
+.top-navbar .navbar-zhihu .navbar-user:hover .navbar-user-tab {
+  position: absolute;
+  display: block;
+  top: 50px;
+  background-color: #055aaf;
+}
+.top-navbar .navbar-zhihu .navbar-user:hover .navbar-user-tab li {
+  padding: 10px 0;
+  list-style: none;
+  color: white;
+}
+.top-navbar .navbar-zhihu .navbar-user:hover .navbar-user-tab li span {
+  margin-right: 10px;
+}
+.top-navbar .navbar-zhihu .navbar-user:hover .navbar-user-tab li a {
+  text-decoration: none;
+  color: white;
+}
+.top-navbar .navbar-default .navbar-nav > li > a,
+.top-navbar .navbar-default .navbar-nav > li > a:hover,
+.top-navbar .navbar-default .navbar-nav > li > a:focus {
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+  color: white;
+}
+.top-navbar .navbar-default .navbar-nav > .active > a,
+.top-navbar .navbar-default .navbar-nav > .active > a:hover,
+.top-navbar .navbar-default .navbar-nav > .active > a:focus {
+  color: white;
+  background-color: #055aaf;
+}
+.top-navbar .dropdown-menu {
+  background-color: #095fb3;
+  border: none;
+}
+
+.modal .form-control {
+  width: 80%;
+  margin: 0 auto;
+}
+.modal .question_tag {
+  width: 20%;
+  display: inline-block;
+  margin: 0 2px;
+}
+.modal #post_error {
+  padding: 5px 10px;
+  color: red;
+  background-color: transparent;
+  font-size: 20px;
+}

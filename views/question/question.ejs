@@ -8,8 +8,11 @@
   <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
   <script type="text/javascript" src="/javascripts/question.js"></script>
   <link rel="stylesheet" href="/stylesheets/question.css">
+  <script type="text/javascript" src="/javascripts/common.js"></script>
+  <link rel="stylesheet" href="/stylesheets/common.css">
 </head>
 <body>
+  <%- include ../common/topNav %>
   <div class="question-zhihu col-md-8 col-md-offset-2">
     <div class="left-content col-md-8">
       <div class="question-content">
@@ -82,15 +85,6 @@
               <span class="h3"><%= user.name %></span>
               <img class="small_avatar pull-right" src="<%= user.avatar %>" alt="头像">
             </div>
-            <!--  <% if (uploadPicErr) { %>
-              <span><%= uploadPicErr %></span>
-            <% } %>
-            <form action="/uploadPic" enctype="multipart/form-data" method="post">
-              <div class="form-group">
-                <input class="form-control" type="file" name="pic">
-                <input class="form-control" type="submit">
-              </div>
-            </form> -->
             <form action="/answer/<%= question._id %>" class="write-answer-content" method="post">
               <div class="form-group">
                 <textarea name="answer" class="form-control" id="textarea-answer" rows="8" placeholder="写下你的回答…上传图片功能已做，然而这里挖下了一个富文本编辑器的坑~~"></textarea>

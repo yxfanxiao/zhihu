@@ -50,12 +50,13 @@ exports.view = function (req, res, next) {
         Answer.findIfHasAnswered(question_id, user._id, function (err, answer) {
           return res.render('question/question', {
             question: q,
-            user: req.session.user,
-            uploadPicErr: req.flash('uploadPicErr').toString(),
-            pic: req.flash('pic').toString(),
+            // 图片上传之后再补进去
+            // uploadPicErr: req.flash('uploadPicErr').toString(),
+            // pic: req.flash('pic').toString(),
             answerErr: req.flash('answerErr').toString(),
             answers: answers,
-            myAnswer: answer
+            myAnswer: answer,
+            err: req.flash('err').toString()
           });
         });
       });

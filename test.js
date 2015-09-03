@@ -4,8 +4,8 @@ moment.locale('zh-cn');
 // console.log(moment([2007, 0, 29]).toNow()); 
 // var date = moment(new Date()).isBefore('2015-09-01');
 // console.log(date)
-// var date = moment(new Date());
-// console.log(date)
+var date = moment("2015-09-06T06:10:05.445Z");
+console.log(date)
 
 // var date = moment('2015-08-30T05:06:07').calendar(null, {
 //     sameDay: '今天 HH:mm',
@@ -22,8 +22,15 @@ moment.locale('zh-cn');
 // console.log(date1==date2)
 
 
-var a = {}
-console.log(a == {})
+
+// var a = {}
+// console.log(a == {})
+
+// if (a) {
+//   console.log('a')
+// } 
+//   console.log('b')
+
 
 
 

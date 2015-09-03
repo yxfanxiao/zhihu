@@ -1,0 +1,95 @@
+
+.top-navbar {
+  width: 100%;
+  height:50px;
+  .navbar-zhihu {
+    background-color: #0661bd;
+    padding-left: 16%;
+    /*padding-right: 16%;*/
+    .brand-zhihu {
+      color: white;
+      font-size: 2em;
+    }
+    .top-navbar-ask {
+      background-color: #0e79e9;
+      color: white;
+      border: none;
+    }
+    .navbar-user {
+      margin-left: 18%;
+      min-width: 150px;
+      img {
+        height: 25px;
+        width: 25px;
+        margin-right: 5px;
+      }
+      .navbar-user-tab {
+        position: absolute;
+        width: 150px;
+        display: none;
+        top: 50px;
+        padding-left: 30px;
+      }
+      &:hover {
+        background-color: #055aaf;
+        .navbar-user-tab {
+          position: absolute;
+          display: block;
+          top: 50px; 
+          background-color: #055aaf;
+          li {
+            padding: 10px 0;
+            list-style: none;
+            color: white;
+            span {
+              margin-right: 10px;
+            }
+            a {
+              text-decoration: none;
+              color: white;
+            }
+          }
+        }        
+      } 
+    }
+  }
+  .navbar-default .navbar-nav > li > a,
+  .navbar-default .navbar-nav > li > a:hover,
+  .navbar-default .navbar-nav > li > a:focus {
+    text-shadow: 0 1px 1px rgba(0,0,0,.12);
+    color: white;
+  }
+  .navbar-default .navbar-nav > .active > a,
+  .navbar-default .navbar-nav > .active > a:hover,
+  .navbar-default .navbar-nav > .active > a:focus {
+    color: white;
+    background-color: #055aaf;
+  }
+  .dropdown a {
+  }
+  .dropdown-menu {
+    background-color: #095fb3;
+    border: none;
+  }
+}
+
+
+
+
+.modal {
+  .form-control {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .question_tag {
+    width: 20%;
+    display: inline-block;
+    margin: 0 2px;
+  }
+  #post_error {
+    padding: 5px 10px;
+    color: red;
+    background-color: transparent;
+    font-size: 20px;
+  } 
+}
