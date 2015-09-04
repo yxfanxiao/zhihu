@@ -37,7 +37,6 @@ exports.cancelUp = function (req, res, next) {
   var answer_id = req.params.a_id;
   var user = req.session.user;
   Answer.cancelUpByAnswerId(answer_id, user._id, function (err, doc) {
-    console.log(doc)
     res.send(doc);
   });
 };
@@ -53,7 +52,6 @@ exports.cancelDown = function (req, res, next) {
   var answer_id = req.params.a_id;
   var user = req.session.user;
   Answer.cancelDownByAnswerId(answer_id, user._id, function (err, doc) {
-    console.log(doc)
     res.send(doc);
   });
 };

@@ -1,0 +1,27 @@
+<% if (user) { %>
+  <% if (myAnswer) { %>
+    <div class="write-answer">一个问题您只能回答一次，但您可以对
+      <a href="#answer-content-top-<%= myAnswer._id %>" data-linkto="answer-content-body-<%= myAnswer._id %>" id="write-answer-point-myanswer" class="h5 ">现有的答案</a>
+      进行修改
+    </div>
+  <% } else { %>
+    <div class="write-answer">
+      <div class="write-answer-user">
+        <span class="h3"><%= user.name %></span>
+        <img class="small_avatar pull-right" src="<%= user.avatar %>" alt="头像">
+      </div>
+      <form action="/question/<%= question._id %>/answer" class="write-answer-content" method="post">
+        <div class="form-group">
+          <textarea name="answer" class="form-control" id="textarea-answer" rows="8" placeholder="写下你的回答…上传图片功能已做，然而这里挖下了一个富文本编辑器的坑~~"></textarea>
+        </div>
+        <% if (answerErr) { %>
+          <label for="textarea-answer" class="label-danger" style="color:white;font-size:20px;border-radius:20px;padding:0 8px;"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;<%= answerErr %></label>
+        <% } %>
+        <input type="submit" class="btn btn-info pull-right" value="发布回答">
+      </form>
+    </div>
+  <% } %>
+<% } else { %>
+  <div class="write-answer" style="font-size:20px;">登录后才可答题,<a href="/">点击登录</a>
+  </div>
+<% } %>

@@ -60,7 +60,10 @@ exports.login = function (req, res, next) {
     }
     // 记住密码 10天
     if (isRemember) {
-      res.cookie('isRemembered', user, { maxAge: 1000 * 60 * 60 *24 * 30 });
+      res.cookie(configure.auth_cookie_name, user._id, {
+        maxAge: 1000 * 60 * 60 *24 * 30,
+        signed: true
+      });
     }
     req.session.user = user;
     return res.redirect('/index');
@@ -69,6 +72,9 @@ exports.login = function (req, res, next) {
 
 exports.logout = function (req, res, next) {
   req.session.user = null;
-  res.clearCookie('isRemembered', { maxAge: 1000 * 60 * 60 *24 * 30 });
+  res.clearCookie(configure.auth_cookie_name, {
+    maxAge: 1000 * 60 * 60 *24 * 30,
+    signed: true
+  });
   return res.redirect('/');
 };

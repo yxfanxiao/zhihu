@@ -1,11 +1,16 @@
-
+var configure = require('../configure');
+var User = require('../proxy').User;
 
 exports.authUser = function (req, res, next) {
   // Ensure user always has defined.
   res.locals.user = null;
   // 只有记住密码、cookie不禁用、cookie没过期，才自动登录
-  if (typeof(req.cookies.isRemembered) !== 'undefined' && req.cookies.isRemembered) {
-    res.locals.user = req.session.user = req.cookies.isRemembered;
+  // cookie 签名
+  if (typeof(req.signedCookies[configure.auth_cookie_name]) !== 'undefined' && req.signedCookies[configure.auth_cookie_name]) {
+    var user_id = req.signedCookies[configure.auth_cookie_name];
+    User.getUserById(user_id, function (err, user) {
+      res.locals.user = req.session.user = user;
+    });
     return next();
   }
   // 第一次登录

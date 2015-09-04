@@ -38,24 +38,24 @@ exports.post = function (req, res, next) {
 // 查看问题
 exports.view = function (req, res, next) {
     var user = req.session.user,
-        user_id = user._id,
         question_id = req.params.q_id;
     Question.findQuestionById(question_id, function (err, q) {
       if (err) {
         return res.render404('你似乎来到了没有知识存在的荒原……');
       }
       Answer.findAnswerByQuestionId(question_id, function (err, answers) {
-        if (!user) {
-            return res.render('question/question', {
-              question: q,
-              answerErr: req.flash('answerErr').toString(),
-              answers: answers,
-              err: req.flash('err').toString()
-            });
-        }
         if (err) {
           return res.render404('你似乎来到了没有知识存在的荒原……');
         }
+        if (!user) {
+          return res.render('question/question', {
+            question: q,
+            answerErr: req.flash('answerErr').toString(),
+            answers: answers,
+            err: req.flash('err').toString()
+          });
+        }
+        var user_id = user._id;
         var isUp = [],
             isDown = [];
         answers.forEach(function(answer, index) {

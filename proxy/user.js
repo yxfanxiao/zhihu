@@ -70,3 +70,7 @@ var isPhone = function (value) {
   var phone_reg = new RegExp('^[0-9]{11}$');
   return phone_reg.test(value);
 };
+
+exports.getUserById = function (id, callback) {
+  User.findOne({ _id: id }, callback);
+};

@@ -1,0 +1,90 @@
+
+<% if (!user) { %>
+  <% answers.forEach(function (answer, index) { %>
+    <div class="answer-content">
+        <div class="answer-left">
+          <div class="up" data-answer="<%= answer._id %>" data-isup="false" data-isdown="false">
+            <span class="glyphicon glyphicon-triangle-top"></span>
+            <div class="h5"><%= answer.ups.length %></div>
+          </div>
+          <div class="down">
+            <span class="glyphicon glyphicon-triangle-bottom"></span>
+          </div>
+        </div>                 
+        <div class="answer-content-top" id="answer-content-top-<%= answer._id %>">
+          <span class="h3"><%= answer.author_name %></span>
+          <img class="small_avatar pull-right" src="<%= answer.author_avatar %>" alt="头像">
+        </div>
+        <div class="answer-content-body" id="answer-content-body-<%= answer._id %>">
+          <div><%= answer.content %></div> 
+        </div>
+        <div class="answer-content-bottom">
+          <a href="#answer-content-top-<%= answer._id %>" class="answer-content-bottom-answer" data-linkto="  answer-content-body-<%= answer._id %>">
+            <span>
+              <% if (!answer.isEdited()) { %>
+                发布于 <%= answer.create_at_isToday() %>
+              <% } else { %>
+                编辑于 <%= answer.update_at_isToday() %>
+              <% } %>
+            </span>
+          </a>
+          <a href="">添加评论</a>
+        </div>
+    </div>
+  <% }); %>  
+<% } else { %>
+  <% answers.forEach(function (answer, index) { %>
+    <div class="answer-content">
+      <% if(isUp[index] !== undefined) { %>
+        <div class="answer-left">
+          <div class="up" data-answer="<%= answer._id %>" data-isup="true" data-isdown="false" style="background-color:#698ebf;color:white;">
+            <span class="glyphicon glyphicon-triangle-top"></span>
+            <div class="h5"><%= answer.ups.length %></div>
+          </div>
+          <div class="down">
+            <span class="glyphicon glyphicon-triangle-bottom"></span>
+          </div>
+        </div>   
+      <% } else if (isDown[index] !== undefined) { %>
+        <div class="answer-left">
+          <div class="up" data-answer="<%= answer._id %>" data-isup="false" data-isdown="true">
+          <span class="glyphicon glyphicon-triangle-top"></span>
+          <div class="h5"><%= answer.ups.length %></div>
+        </div>
+        <div class="down" style="background-color:#698ebf;color:white;">
+          <span class="glyphicon glyphicon-triangle-bottom"></span>
+         </div>
+        </div>   
+      <% } else { %>
+        <div class="answer-left">
+          <div class="up" data-answer="<%= answer._id %>" data-isup="false" data-isdown="false">
+            <span class="glyphicon glyphicon-triangle-top"></span>
+            <div class="h5"><%= answer.ups.length %></div>
+          </div>
+          <div class="down">
+            <span class="glyphicon glyphicon-triangle-bottom"></span>
+          </div>
+        </div>                 
+      <% } %>
+        <div class="answer-content-top" id="answer-content-top-<%= answer._id %>">
+          <span class="h3"><%= answer.author_name %></span>
+          <img class="small_avatar pull-right" src="<%= answer.author_avatar %>" alt="头像">
+        </div>
+        <div class="answer-content-body" id="answer-content-body-<%= answer._id %>">
+          <div><%= answer.content %></div> 
+        </div>
+        <div class="answer-content-bottom">
+          <a href="#answer-content-top-<%= answer._id %>" class="answer-content-bottom-answer" data-linkto="answer-content-body-<%= answer._id %>">
+            <span>
+              <% if (!answer.isEdited()) { %>
+                发布于 <%= answer.create_at_isToday() %>
+              <% } else { %>
+                编辑于 <%= answer.update_at_isToday() %>
+              <% } %>
+            </span>
+          </a>
+          <a href="">添加评论</a>
+        </div>
+    </div>
+  <% }); %>
+<% } %>

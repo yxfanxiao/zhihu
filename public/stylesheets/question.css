@@ -185,25 +185,6 @@ body {
   height: 25px;
 }
 
-.zhihu-footer {
-  border-top: 1px solid #eee;
-  margin-top: 20px;
-  padding: 20px 10px;
-  color: #999;
-  text-align: right;
-}
-.zhihu-footer ul {
-  text-decoration: none;
-  list-style: none;
-}
-.zhihu-footer ul li {
-  margin: 3px 5px;
-  display: inline;
-}
-.zhihu-footer ul li a {
-  color: #999;
-}
-
 .up, .down {
   color: #698ebf;
 }
