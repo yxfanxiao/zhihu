@@ -1,5 +1,8 @@
 var models = require('../models');
-var Question = models.Question;
+var Question = models.Question
+var Topic = models.Topic;
+var eventproxy = require('eventproxy');
+
 
 exports.newQuestionSave = function (author_id, title, description, tags, callback) {
   var question = new Question();
@@ -11,5 +14,5 @@ exports.newQuestionSave = function (author_id, title, description, tags, callbac
 };
 
 exports.findQuestionById = function (question_id, callback) {
-  Question.findById(question_id, callback);
+  Question.findByIdAndUpdate(question_id, { $inc:{ pv: 1 }}, callback);
 };

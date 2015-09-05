@@ -17,8 +17,8 @@
 </div>
 <div class="question-status">
   <h5>问题状态</h5>
-  <span class="annotation-color">最近活动于2015-08-31</span><br/>
-  <span class="annotation-color">被浏览100次</span>
+  <span class="annotation-color">最近活动于<%= question.update_at_isToday() %></span><br/>
+  <span class="annotation-color">被浏览<%= question.pv %>次</span>
 </div>
 <div class="linked-website">
   <img src="/images/static/zhihu_logo.jpg" alt="">

@@ -14,6 +14,7 @@
     "crypto": "0.0.3",
     "debug": "~2.2.0",
     "ejs": "~2.3.3",
+    "eventproxy": "^0.3.4",
     "express": "~4.13.1",
     "express-session": "^1.11.3",
     "lodash": "^3.10.1",
@@ -22,6 +23,7 @@
     "morgan": "~1.6.1",
     "multer": "^1.0.3",
     "serve-favicon": "~2.3.0",
+    "ueditor": "^1.1.1",
     "validation": "0.0.1"
   }
 }

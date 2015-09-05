@@ -1,0 +1,33 @@
+.topic-zhihu {
+  min-height: 600px;
+}
+.topic-zhihu .glyphicon {
+  font-size: 20px;
+}
+.topic-zhihu .topic-top {
+  margin: 30px 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
+}
+.topic-zhihu .topic {
+  padding: 10px 0;
+  min-height: 50px;
+  border-left: 2px solid #eee;
+  margin: 20px 0;
+}
+.topic-zhihu .topic .left-tag {
+  margin-left: 30px;
+  font-size: 15px;
+  padding: 5px 10px;
+  background-color: #4078c0;
+  color: white;
+  float: left;
+  border-radius: 10%;
+}
+.topic-zhihu .topic .right-question {
+  margin-top: 25px;
+  margin-left: 100px;
+}
+.topic-zhihu .topic .right-question a {
+  display: block;
+}

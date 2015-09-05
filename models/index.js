@@ -12,7 +12,9 @@ db.once('open', function () {
 require('./user');
 require('./question');
 require('./answer');
+require('./topic');
 
 exports.User = mongoose.model('User');
 exports.Question = mongoose.model('Question');
 exports.Answer = mongoose.model('Answer');
+exports.Topic = mongoose.model('Topic');

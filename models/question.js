@@ -14,7 +14,8 @@ var QuestionSchema = new Schema({
   // comments: [{
   //   create_at: { type: Date, default: Date.now },
   // }]
-  deleted: { type: Boolean, default: false }           // 软删除
+  deleted: { type: Boolean, default: false },           // 软删除
+  pv: { type: Number, default: 0 }
 });
 
 QuestionSchema.plugin(BaseModel);

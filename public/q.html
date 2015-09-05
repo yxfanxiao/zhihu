@@ -10,45 +10,29 @@
   <link rel="stylesheet" href="./stylesheets/question.css">  
 </head>
 <style>
-body {
-  min-width: 500px;
+.aaa {
+  width: 400px;
+  min-height: 300px;
+  border: 1px solid #eee;
 }
-  .main {
-    background-color: yellow;
-    float:left;
-    width: 100%;
-  }
-  .mid {
-    padding: 0 200px 0 300px;
-  }
-  .left {
-    background-color: red;
-    float:left;
-    width:300px;
-    margin-left: -100%;
-  }
-  .right {
-    background-color: green;
-    float:left;
-    width: 200px;
-    margin-left: -200px;
-  }
+.question {
+
+}
 </style>
 <body>
- <!--  <form action="/uploadPic" enctype="multipart/form-data">
-    <input type="file" name="pic">
-    <input type="submit">
-  </form> -->
-  
-<!--   <div class="main">
-    <div class="mid">main</div>
+  <div class="aaa">
+    <div class="qusetion">这是一个问题</div>
+    <textarea name="" id="" cols="30" rows="10"></textarea>
+    <button class="btn"></button>
   </div>
-  <div class="left">left</div>
-  <div class="right">right</div>
- -->
-  <div class="aaa">123456789</div>
   <script>
-    $('.aaa').append('<p>wq</p><h1>&nbsp;&nbsp;&nbsp;AAA</h1>');
+    $('.btn').click(function () {
+      var val = $('textarea').val()
+      alert(val)
+      console.log(val)
+      // var  after_reg = val.replace
+    $('.aaa').append('<div class="answer">' + val + '</div>');
+    })
   </script>
 </body>
 </html>

@@ -10,19 +10,20 @@ exports.authUser = function (req, res, next) {
     var user_id = req.signedCookies[configure.auth_cookie_name];
     User.getUserById(user_id, function (err, user) {
       res.locals.user = req.session.user = user;
+      return next();
     });
+  } else {
+    // 第一次登录
+    if (typeof(req.session.user) === 'undefined') {
+      req.session.user = null;
+      return next();
+    }
+    // 不记住密码时，登录后从这里通过
+    if (req.session.user) {
+      res.locals.user = req.session.user;
+      return next();
+    }  
+    // 注销后，req.session.user=null
     return next();
   }
-  // 第一次登录
-  if (typeof(req.session.user) === 'undefined') {
-    req.session.user = null;
-    return next();
-  }
-  // 不记住密码时，登录后从这里通过
-  if (req.session.user) {
-    res.locals.user = req.session.user;
-    return next();
-  }  
-  // 注销后，req.session.user=null
-  return next();
 };

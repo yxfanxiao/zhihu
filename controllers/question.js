@@ -2,7 +2,9 @@ var configure = require('../configure');
 var _ = require('lodash');
 var Question = require('../proxy').Question;
 var Answer = require('../proxy').Answer;
+var Topic = require('../proxy').Topic;
 var upload = require('../common/upload').upload;
+var eventproxy = require('eventproxy');
 
 // 发布问题
 exports.post = function (req, res, next) {
@@ -26,12 +28,19 @@ exports.post = function (req, res, next) {
     req.flash('err', '至少添加1个标签！');
     return res.redirect('/index');
   }
-
   Question.newQuestionSave(user._id, title, description, tags, function (err, question) {
     if (err) {
       return res.render404('提问出错了');  
     }
-    return res.redirect('/question/' + question._id);
+    var ep = new eventproxy();
+    tags.forEach(function (tag) {
+      Topic.newTagSave(tag, question._id, question.title, function (err, topic) {
+        ep.emit('save_tag', topic);
+      });
+    });
+    ep.after('save_tag', tags.length, function (topics) {
+      return res.redirect('/question/' + question._id);
+    });
   });
 };
 
@@ -39,7 +48,7 @@ exports.post = function (req, res, next) {
 exports.view = function (req, res, next) {
     var user = req.session.user,
         question_id = req.params.q_id;
-    Question.findQuestionById(question_id, function (err, q) {
+    Question.findQuestionById(question_id, function (err, question) {
       if (err) {
         return res.render404('你似乎来到了没有知识存在的荒原……');
       }
@@ -49,7 +58,7 @@ exports.view = function (req, res, next) {
         }
         if (!user) {
           return res.render('question/question', {
-            question: q,
+            question: question,
             answerErr: req.flash('answerErr').toString(),
             answers: answers,
             err: req.flash('err').toString()
@@ -62,13 +71,13 @@ exports.view = function (req, res, next) {
           answer.ups.forEach(function(up) {
             if (up == user_id) {
               isUp[index] = true;
-              // return;
+              return;
             }
           });
           answer.downs.forEach(function(down) {
             if (down == user_id) {
               isDown[index] = true;
-              // return;
+              return;
             }
           });
         });        
@@ -77,7 +86,7 @@ exports.view = function (req, res, next) {
             return res.render404('你似乎来到了没有知识存在的荒原……');
           }
           return res.render('question/question', {
-            question: q,
+            question: question,
             // 图片上传之后再补进去
             // uploadPicErr: req.flash('uploadPicErr').toString(),
             // pic: req.flash('pic').toString(),
