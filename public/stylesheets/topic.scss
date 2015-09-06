@@ -25,8 +25,12 @@
     .right-question {
       margin-top: 25px;
       margin-left: 100px;
-      a {
-        display: block;
+      font-size: 17px;
+      .question-pv {
+        color: #999;
+        font-size: 13px;
+        margin-left: 15px;
+        text-decoration: none;
       }
     }
   }

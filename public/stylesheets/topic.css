@@ -27,7 +27,11 @@
 .topic-zhihu .topic .right-question {
   margin-top: 25px;
   margin-left: 100px;
+  font-size: 17px;
 }
-.topic-zhihu .topic .right-question a {
-  display: block;
+.topic-zhihu .topic .right-question .question-pv {
+  color: #999;
+  font-size: 13px;
+  margin-left: 15px;
+  text-decoration: none;
 }

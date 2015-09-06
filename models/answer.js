@@ -6,6 +6,8 @@ var ObjectId  = Schema.ObjectId;
 var AnswerSchema = new Schema({
   question_id: { type: ObjectId },
   author_id: { type: ObjectId },
+  // 反规格化，造成了冗余，但是减少了查询次数
+  // 查询数据量/查询IO VS 总数据量
   author_name: { type: String },
   author_avatar: { type: String },
   content: { type: String },

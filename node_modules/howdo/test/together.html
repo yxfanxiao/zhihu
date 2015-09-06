@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+ - together
+ - @author ydr.me
+ - 2014-08-26 14:08
+ -->
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="author" content="云淡然;http://ydr.me">
+    <meta name="keywords" content="关键词1,关键词2">
+    <meta name="description" content="描述语句">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <title>together</title>
+</head>
+<body>
+<script src="./async.js"></script>
+<script src="../howdo.js"></script>
+<script>
+
+    var howdo = window.howdo;
+
+    howdo
+        // 任务1
+            .task(function (done) {
+                log('任务1正在做...');
+                async('任务1', function (e) {
+                    if (e) {
+                        log('任务1做错了');
+                    } else {
+                        log('任务1做对了，给的值是：1');
+                    }
+                    done(e, 1);
+                });
+            })
+
+        // 任务2
+            .task(function (done) {
+                log('任务2正在做...');
+                async('任务2', function (e, data) {
+                    if (e) {
+                        log('任务2做错了');
+                    } else {
+                        log('任务2做对了，给的值是：2, 3');
+                    }
+                    done(e, 2, 3);
+                });
+            })
+
+        // 一起做
+            .together(function (e, data1, data2, data3) {
+                log('\r\n###########################################################');
+                if (e) {
+                    log('together失败：' + e.message);
+                } else {
+                    log('together成功：应拿到的数据为：1,2,3，实际拿到的数据分别为：' + [data1, data2, data3].join(','));
+                }
+            });
+
+    function log(html) {
+        var p = document.createElement('p');
+        p.innerHTML = html;
+        document.body.appendChild(p);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+ - each-together
+ - @author ydr.me
+ - 2014-08-26 14:12
+ -->
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="author" content="云淡然;http://ydr.me">
+    <meta name="keywords" content="关键词1,关键词2">
+    <meta name="description" content="描述语句">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <title>each-together</title>
+</head>
+<body>
+<script src="./async.js"></script>
+<script src="../howdo.js"></script>
+<script>
+
+//    var howdo = window.howdo;
+
+
+    // 分配任务1
+    howdo.task(function (done) {
+        log('正在做task分配任务1……');
+        async('task分配任务1', function (err) {
+            log('task分配任务1做完了');
+            done(err, 500);
+        });
+    }).each([700, 900], function (key, val, done) {
+        log('正在做第' + (key + 1) + '次事情……');
+        async('第' + (key + 1) + '次事情', function (err) {
+            log('第' + (key + 1) + '次事情做完了');
+            done(err, val);
+        });
+    }).task(function (done) {
+        log('正在做task分配任务2……');
+        async('task分配任务2', function (err) {
+            log('task分配任务2做完了');
+            done(err, 1100, 1300);
+        });
+    }).together(function (err, data1, data2, data3, data4, data5) {
+        if (err) return log(err.message);
+
+        log('理论数据为：500,700,900,1100,1300');
+        log('实际数据为：' + [data1, data2, data3, data4, data5].join(','));
+    });
+
+    function log(html) {
+        var p = document.createElement('p');
+        p.innerHTML = html;
+        document.body.appendChild(p);
+    }
+</script>
+</body>
+</html>

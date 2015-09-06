@@ -1,0 +1,41 @@
+.home-user  {
+  margin-top: 30px;
+  padding-bottom: 30px;
+  border: 1px solid #eee;
+  .user-infomation {
+    .user-avatar {
+      width: 140px;
+      position: relative;
+      border-radius: 5px;
+      img {
+        position: relative;
+        height: 140px;
+        width: 140px;
+      }
+      #span_update {
+        display: block;
+        color: #999;
+        margin-top: 15px;
+        text-align: center;
+      }
+      #update_avatar {
+        display: none;
+      }
+      &:hover {
+        opacity: 0.7;
+        #update_avatar {
+          position: absolute;
+          display: block;
+          top: 125px;
+          height: 25px;
+          width: 140px;
+          line-height: 25px;
+          font-size: 17px;
+          text-align: center;
+          background-color: #000;
+          color: white;
+        }
+      }
+    }
+  }
+}

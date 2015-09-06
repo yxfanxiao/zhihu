@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+ - follow
+ - @author ydr.me
+ - 2014-08-26 13:56
+ -->
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="author" content="云淡然;http://ydr.me">
+    <meta name="keywords" content="关键词1,关键词2">
+    <meta name="description" content="描述语句">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <title>follow</title>
+</head>
+<body>
+<script src="./async.js"></script>
+<script src="../howdo.js"></script>
+<script>
+
+    var howdo = window.howdo;
+
+    howdo
+        // 第1步
+            .task(function (next) {
+                log('###########################################################');
+                log('正在做任务第1步...');
+                async('任务第1步', function (e) {
+                    if (e) {
+                        log('任务第1步做错了。')
+                    } else {
+                        log('任务第1步做对了，上交的值为：1, 2, 3');
+                    }
+                    next(e, 1, 2, 3);
+                });
+            })
+
+        // 第2步
+            .task(function (next, data1, data2, data3) {
+                log('\r\n###########################################################');
+                log('正在做任务第2步...');
+                log('拿到任务第1步的值为：' + data1 + ', ' + data2 + ', ' + data3);
+                async('任务第2步', function (e) {
+                    if (e) {
+                        log('任务第2步做错了。')
+                    } else {
+                        log('任务第2步做对了，上交的值为：4');
+                    }
+                    next(e, 4);
+                });
+            })
+
+        // 第3步
+            .follow(function (e, data4) {
+                log('\r\n###########################################################');
+                if (e) {
+                    log('follow失败：' + e.message);
+                } else {
+                    log('follow成功：拿到的数据应该为：4，实际值为：' + data4);
+                }
+            });
+
+    function log(html){
+        var p = document.createElement('p');
+        p.innerHTML = html;
+        document.body.appendChild(p);
+    }
+</script>
+</body>
+</html>

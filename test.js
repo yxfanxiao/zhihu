@@ -60,18 +60,25 @@ var _ = require('lodash')
 //   return i + 1;
 // }))
 
-var Promise = require('bluebird')
-var fs = Promise.promisifyAll(require("fs"))
-Promise.then(function () {
-  return [fs.readFileAsync('myfile.json'),
-          fs.readFileAsync('myfile2.json')]
-}).spread(function (file1, file2) {
-  if (file1 == file2) {
-    console.log(file1)
-  } else {
-    console.log(file2)
-  }
-})
+// var Promise = require('bluebird')
+// var fs = Promise.promisifyAll(require("fs"))
+// Promise.then(function () {
+//   return [fs.readFileAsync('myfile.json'),
+//           fs.readFileAsync('myfile2.json')]
+// }).spread(function (file1, file2) {
+//   if (file1 == file2) {
+//     console.log(file1)
+//   } else {
+//     console.log(file2)
+//   }
+// })
+
+
+
+
+
+
+
 
 
 // fs.readFileAsync("myfile.json").then(JSON.parse).then(function (json) {

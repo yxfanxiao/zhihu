@@ -1,20 +1,20 @@
 var Topic = require('../proxy').Topic;
+var Question = require('../proxy').Question;
 var eventproxy = require('eventproxy');
 
-exports.getAll = function (req, res, next) {
-  Topic.getAll(function (err, tags) {
+exports.getAll = function (req, res, next) { 
+  // 这里嵌套了3层forEach。。分到proxy层去了2层。蛋疼
+  Topic.getAll(function (err, topics, tags) {
     var ep = new eventproxy();
-    tags.forEach(function (tag) {
-      Topic.findQuestionByTag(tag, function (err,question) {
-        ep.emit('find_question', question);
-      });
+    topics.forEach(function (topic) {
+      Question.findQuestionByTopic(topic, ep.done('questions'));
     });
-    ep.after('find_question', tags.length, function (topics) {
+    ep.after('questions', topics.length, function (list) {
       return res.render('topic/topic', {
-        topics: topics,
+        topics: list,
+        tags: tags,
         err: req.flash('err').toString()
       });
-    });
+    })
   });
 };   
-

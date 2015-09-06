@@ -5,7 +5,6 @@ var ObjectId  = Schema.ObjectId;
 
 var TopicSchema = new Schema({
   tag: { type: String },
-  question_title: { type: String },
   question_id: { type: ObjectId },
   create_at: { type: Date, default: Date.now }
 });

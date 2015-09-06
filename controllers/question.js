@@ -34,7 +34,7 @@ exports.post = function (req, res, next) {
     }
     var ep = new eventproxy();
     tags.forEach(function (tag) {
-      Topic.newTagSave(tag, question._id, question.title, function (err, topic) {
+      Topic.newTagSave(tag, question._id, function (err, topic) {
         ep.emit('save_tag', topic);
       });
     });

@@ -15,20 +15,20 @@
   <div class="topic-zhihu col-md-5 col-md-offset-2">
     <div class="topic-top">
       <span class="glyphicon glyphicon-th-list"></span>
-      <span class="h2">所有话题</span>
+      <span class="h2">最新话题</span>
     </div>    
     <% topics.forEach(function (topic, index) { %>  
-      <div class="topic">
-        <div class="left-tag"><%= topic[0].tag %></div>
-        <div style="clear:both;"></div>
-        <div class="right-question">
-        <% topic.forEach(function (question) { %>
-          <a href="/question/<%= question.question_id %>"><%= question.question_title %></a>
-        <% }); %>
-        </div>
-      </div>
+        <div class="topic">
+          <div class="left-tag"><%= tags[index] %></div>
+          <div style="clear:both;"></div>
+          <div class="right-question">
+            <% topic.forEach(function (question) { %>
+              <a href="/question/<%= question._id %>"><%= question.title %></a>
+              <span class="question-pv">阅览量<%= question.pv %></span><br>
+            <% }); %>
+          </div>
+       </div>
     <% }); %>
-
   </div> 
 </body>
 </html>

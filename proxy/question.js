@@ -16,3 +16,19 @@ exports.newQuestionSave = function (author_id, title, description, tags, callbac
 exports.findQuestionById = function (question_id, callback) {
   Question.findByIdAndUpdate(question_id, { $inc:{ pv: 1 }}, callback);
 };
+
+// 话题查询时不加pv
+var findQuestionNoPvById = exports.findQuestionNoPvById = function (question_id, callback) {
+  Question.findById(question_id).exec(callback);
+};
+
+exports.findQuestionByTopic = function (topic, callback) {
+  var ep = new eventproxy();
+  topic.forEach(function (question) {
+    findQuestionNoPvById(question.question_id, ep.done('find_question'));    
+  });
+  ep.fail(callback);
+  ep.after('find_question', topic.length, function (questions) {
+    return callback(null, questions);
+  });
+};

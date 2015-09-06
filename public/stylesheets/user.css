@@ -1,0 +1,39 @@
+.home-user {
+  margin-top: 30px;
+  padding-bottom: 30px;
+  border: 1px solid #eee;
+}
+.home-user .user-infomation .user-avatar {
+  width: 140px;
+  position: relative;
+  border-radius: 5px;
+}
+.home-user .user-infomation .user-avatar img {
+  position: relative;
+  height: 140px;
+  width: 140px;
+}
+.home-user .user-infomation .user-avatar #span_update {
+  display: block;
+  color: #999;
+  margin-top: 15px;
+  text-align: center;
+}
+.home-user .user-infomation .user-avatar #update_avatar {
+  display: none;
+}
+.home-user .user-infomation .user-avatar:hover {
+  opacity: 0.7;
+}
+.home-user .user-infomation .user-avatar:hover #update_avatar {
+  position: absolute;
+  display: block;
+  top: 125px;
+  height: 25px;
+  width: 140px;
+  line-height: 25px;
+  font-size: 17px;
+  text-align: center;
+  background-color: #000;
+  color: white;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Topic</title>
+  <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+  <script type="text/javascript" src="/javascripts/jquery-2.1.4.js"></script>
+  <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
+  <link rel="stylesheet" href="/stylesheets/user.css">
+  <script type="text/javascript" src="/javascripts/common.js"></script>
+  <link rel="stylesheet" href="/stylesheets/common.css">
+</head>
+<body>
+  <%- include ../common/topNav %>
+  <div class="home-user col-md-5 col-md-offset-2">
+    <div class="user-infomation">
+      <div class="user-name h1"><%= user.name %></div>
+      <div class="user-avatar">
+
+<!-- <form method='post' action='/upload' enctype='multipart/form-data' >
+  <input type="file" name='pic'/><br>
+  <input type="submit" />
+</form> -->
+        <img src="<%= user.avatar %>" alt="头像">
+        <span id="update_avatar">修改头像</span>
+        <span id="span_update">点击修改头像</span>
+      </div>
+      <input type="file">
+    </div>
+  </div>
+  <script>
+    $('#update_avatar').click(function () {
+      
+    });
+  </script>
+</body>
+</html>

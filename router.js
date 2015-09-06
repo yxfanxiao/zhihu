@@ -29,6 +29,9 @@ router.put('/answer/:a_id/down', answer.cancelDown);    // 修改down
 // 话题
 router.get('/topic', topic.getAll);                     // 得到话题
 
+// 用户
+router.get('/home', index.home);                         // 用户主页
+
 // common
 router.post('/uploadPic', question.uploadPic);          // 上传图片
 
