@@ -6,6 +6,7 @@ exports.newUserSave = function (name, phoneOrEmail, password, callback) {
   if (isEmail(phoneOrEmail)) {
     User.find({ email: phoneOrEmail }, function (err, user) {
       if (user.length > 0) {
+        err = {};
         err.message = '该邮箱已被注册！';
         return callback(err, user);
       }
@@ -20,6 +21,7 @@ exports.newUserSave = function (name, phoneOrEmail, password, callback) {
   else if (isPhone(phoneOrEmail)) {
     User.find({ phone: phoneOrEmail }, function (err, user) {
       if (user.length > 0) {
+        err = {};
         err.message = '该手机号已被注册！';
         return callback(err, user);
       }
@@ -73,4 +75,9 @@ var isPhone = function (value) {
 
 exports.getUserById = function (id, callback) {
   User.findOne({ _id: id }, callback);
+};
+
+
+exports.updateAvarar = function (user_id, avatar_path, callback) {
+  User.findByIdAndUpdate(user_id, { $set:{ avatar: avatar_path }}, callback);
 };

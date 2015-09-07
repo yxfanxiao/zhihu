@@ -1,5 +1,7 @@
 var models = require('../models');
 var Answer = models.Answer;
+var Question = models.Question;
+var eventproxy = require('eventproxy');
 
 exports.newAnswerSave = function (question_id, author_id, author_name, author_avatar, content, callback) {
   var answer = new Answer();
@@ -37,4 +39,26 @@ exports.addDownByAnswerId = function (answer_id, user_id, callback) {
 // 撤销Down
 exports.cancelDownByAnswerId = function (answer_id, user_id, callback) {
   Answer.update({ '_id': answer_id }, { $pull:{ 'downs': user_id }}, callback);
+};
+
+exports.findAllAnswerById = function (user_id, callback) {
+  Answer.find({ 'author_id': user_id }, callback);
+};
+
+
+exports.findWholeAnswerById = function (user_id, callback) {
+  Answer.find({ 'author_id': user_id }, function (err, answers) {
+    var ep = new eventproxy();
+    answers.forEach(function(answer) {
+      var questionAndAnswer = {};
+      questionAndAnswer.answer = answer;
+      Question.findOne({ '_id': answer.question_id }, function (err, question) {
+        questionAndAnswer.question = question;
+        ep.emit('find_question', questionAndAnswer);
+      });
+    });
+    ep.after('find_question', answers.length, function (questionAndAnswer) {
+      callback(null, questionAndAnswer);
+    });
+  });
 };

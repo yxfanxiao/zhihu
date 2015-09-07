@@ -1,8 +1,7 @@
 var models = require('../models');
-var Question = models.Question
+var Question = models.Question;
 var Topic = models.Topic;
 var eventproxy = require('eventproxy');
-
 
 exports.newQuestionSave = function (author_id, title, description, tags, callback) {
   var question = new Question();
@@ -32,3 +31,13 @@ exports.findQuestionByTopic = function (topic, callback) {
     return callback(null, questions);
   });
 };
+
+// 用户发布的问题的数量
+exports.findAllQuestionsByUserId = function (user_id, callback) {
+  Question.count({ 'author_id': user_id }, callback);
+}
+
+// 用户发布的所有问题
+exports.findQuestionsByUserId = function (user_id, callback) {
+  Question.find({ 'author_id': user_id }, callback);
+}

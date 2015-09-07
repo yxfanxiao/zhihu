@@ -3,8 +3,66 @@
   padding-bottom: 30px;
   border: 1px solid #eee;
   .user-infomation {
+    .frame {
+      margin: 50px 20px;
+      border: 1px solid #eee;
+      padding: 0 10px;
+      .frame-title {
+        margin: 10px 5px;
+        padding: 5px 0px;
+        font-size: 17px;
+        font-weight: bold;
+        border-bottom: 1px solid #eee;
+      }
+      .frame-body {
+        min-width: 500px;
+        .frame-answers {
+          border-bottom: 1px solid #eee;
+          padding: 10px 0;
+          margin-top: 10px;
+          .answer-ups {
+            float: left;
+            div {
+              color: #259;
+              height: 45px;
+              width: 50px;
+              font-weight: bold;
+              background-color: #eff6fa;
+              text-align: center;
+              span {
+                color: #259;
+                display: block;
+              }
+            }
+          }
+          .answer-question {
+            margin-left: 20px;
+            float: left;
+            .answer {
+              a   {
+                font-size: 17px;
+                font-weight: bold;
+                color: #259;
+              }
+            }
+            .question {
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .user-introduction {
+    .user-name {
+      margin-bottom: 30px;
+    }
+    .user-count {
+      font-size: 17px;
+    }
+    max-width: 220px;
     .user-avatar {
-      width: 140px;
+      /*width: 140px;*/
       position: relative;
       border-radius: 5px;
       img {
@@ -12,17 +70,24 @@
         height: 140px;
         width: 140px;
       }
+      #span_note {
+        display: block;
+        color: #999;
+        margin-top: 15px;
+      }
       #span_update {
         display: block;
         color: #999;
         margin-top: 15px;
-        text-align: center;
       }
       #update_avatar {
         display: none;
       }
+      #myform {
+          display: none;
+      } 
       &:hover {
-        opacity: 0.7;
+        opacity: 0.8;
         #update_avatar {
           position: absolute;
           display: block;

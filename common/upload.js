@@ -4,7 +4,7 @@ var storage = multer.diskStorage({
     cb(null, './public/images/pics')
   },
   filename: function (req, file, cb) {
-    cb(null, req.session.user._id + Date.now());
+    cb(null, req.session.user._id + Date.now() + '.png');
   }
 });
 

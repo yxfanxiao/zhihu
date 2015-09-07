@@ -34,6 +34,10 @@ exports.register = function (req, res, next) {
       req.flash('err', err.message);
       return res.redirect('/');
     }
+    res.cookie(configure.auth_cookie_name, user._id, {
+      maxAge: 1000 * 60 * 60 *24 * 30,
+      signed: true
+    });    
     req.session.user = user;
     return res.redirect('/index');
   })

@@ -31,6 +31,7 @@ router.get('/topic', topic.getAll);                     // 得到话题
 
 // 用户
 router.get('/home', index.home);                         // 用户主页
+router.post('/updateAvatar', index.updateAvatar);        // 修改头像
 
 // common
 router.post('/uploadPic', question.uploadPic);          // 上传图片

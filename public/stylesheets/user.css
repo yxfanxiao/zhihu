@@ -3,29 +3,92 @@
   padding-bottom: 30px;
   border: 1px solid #eee;
 }
-.home-user .user-infomation .user-avatar {
-  width: 140px;
+.home-user .user-infomation .frame {
+  margin: 50px 20px;
+  border: 1px solid #eee;
+  padding: 0 10px;
+}
+.home-user .user-infomation .frame .frame-title {
+  margin: 10px 5px;
+  padding: 5px 0px;
+  font-size: 17px;
+  font-weight: bold;
+  border-bottom: 1px solid #eee;
+}
+.home-user .user-infomation .frame .frame-body {
+  min-width: 500px;
+}
+.home-user .user-infomation .frame .frame-body .frame-answers {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+  margin-top: 10px;
+}
+.home-user .user-infomation .frame .frame-body .frame-answers .answer-ups {
+  float: left;
+}
+.home-user .user-infomation .frame .frame-body .frame-answers .answer-ups div {
+  color: #259;
+  height: 45px;
+  width: 50px;
+  font-weight: bold;
+  background-color: #eff6fa;
+  text-align: center;
+}
+.home-user .user-infomation .frame .frame-body .frame-answers .answer-ups div span {
+  color: #259;
+  display: block;
+}
+.home-user .user-infomation .frame .frame-body .frame-answers .answer-question {
+  margin-left: 20px;
+  float: left;
+}
+.home-user .user-infomation .frame .frame-body .frame-answers .answer-question .answer a {
+  font-size: 17px;
+  font-weight: bold;
+  color: #259;
+}
+.home-user .user-infomation .frame .frame-body .frame-answers .answer-question .question {
+  font-size: 15px;
+}
+.home-user .user-introduction {
+  max-width: 220px;
+}
+.home-user .user-introduction .user-name {
+  margin-bottom: 30px;
+}
+.home-user .user-introduction .user-count {
+  font-size: 17px;
+}
+.home-user .user-introduction .user-avatar {
+  /*width: 140px;*/
   position: relative;
   border-radius: 5px;
 }
-.home-user .user-infomation .user-avatar img {
+.home-user .user-introduction .user-avatar img {
   position: relative;
   height: 140px;
   width: 140px;
 }
-.home-user .user-infomation .user-avatar #span_update {
+.home-user .user-introduction .user-avatar #span_note {
   display: block;
   color: #999;
   margin-top: 15px;
-  text-align: center;
 }
-.home-user .user-infomation .user-avatar #update_avatar {
+.home-user .user-introduction .user-avatar #span_update {
+  display: block;
+  color: #999;
+  margin-top: 15px;
+}
+.home-user .user-introduction .user-avatar #update_avatar {
   display: none;
 }
-.home-user .user-infomation .user-avatar:hover {
-  opacity: 0.7;
+.home-user .user-introduction .user-avatar #myform {
+  display: none;
 }
-.home-user .user-infomation .user-avatar:hover #update_avatar {
+.home-user .user-introduction .user-avatar:hover {
+  opacity: 0.8;
+}
+.home-user .user-introduction .user-avatar:hover #update_avatar {
   position: absolute;
   display: block;
   top: 125px;
