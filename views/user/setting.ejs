@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Topic</title>
+  <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+  <script type="text/javascript" src="/javascripts/jquery-2.1.4.js"></script>
+  <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
+  <link rel="stylesheet" href="/stylesheets/user.css">
+  <script type="text/javascript" src="/javascripts/common.js"></script>
+  <link rel="stylesheet" href="/stylesheets/common.css">
+</head>
+<body>
+  <%- include ../common/topNav %>
+  <div class="setting-user col-md-8 col-md-offset-2">
+    <ul class="nav nav-tabs" id="setting-tab">
+      <li class="active" id="tab-data"><a href="#data">基本资料</a></li>
+      <li id="tab-account"><a href="#account">账号和密码</a></li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active update" id="data">
+        <div class="info-tab">
+          <span class="h4">姓名</span>
+          <span class="user-info"><%= user.name %><a class="glyphicon glyphicon-edit edit-name show_hidden">修改</a></span>
+          <form action="/user/<%= user._id %>/name" method="post">
+            <div class="form-group">
+              <input type="text" name="name" class="form-control edited info" placeholder="姓名">
+            </div>
+            <div class="form-group">
+              <input type="submit" class="form-control edited submit" value="保存">
+            </div>
+          </form>
+        </div>
+      </div>  
+      <div class="tab-pane update" id="account">
+        <div class="info-tab">
+          <span class="h4">邮箱</span>
+          <span class="user-info">
+            <% if (!user.email) { %>
+              <span style="color:#999;font-size:15px;">尚未注册邮箱</span>
+            <% } else { %>
+              <%= user.email %><a class="glyphicon glyphicon-edit edit-name show_hidden">修改</a></span>
+            <% } %>
+          <form action="/user/<%= user._id %>/email" method="post">
+            <div class="form-group">
+              <input type="text" name="email"class="form-control edited info" placeholder="邮箱">
+            </div>
+            <div class="form-group">
+              <input type="submit" class="form-control edited submit" value="保存">
+            </div>
+          </form>
+        </div>
+        <div class="info-tab">
+          <span class="h4">手机</span>
+          <span class="user-info">
+            <% if (!user.phone) { %>
+              <span style="color:#999;font-size:15px;">尚未注册手机号码</span>
+            <% } else { %>
+              <%= user.phone %><a class="glyphicon glyphicon-edit edit-name show_hidden">修改</a>
+            <% } %>
+          </span>
+          <form action="/user/<%= user._id %>/phone" method="post">
+            <div class="form-group">
+              <input type="text" name="phone"class="form-control edited info" placeholder="手机号码">
+            </div>
+            <div class="form-group">
+              <input type="submit" class="form-control edited submit" value="保存">
+            </div>
+          </form>
+        </div>
+        <div class="info-tab">
+          <span class="h4">密码</span>
+          <span class="user-info"><a class="show_hidden">修改密码</a></span>
+          <form action="/user/<%= user._id %>/password" method="post">
+            <div class="form-group">
+              <input type="text" name="originalPassword" class="form-control edited info" placeholder="输入原密码">
+            </div>
+            <div class="form-group">
+              <input type="text" name="newPassword" class="form-control edited info" placeholder="新密码">
+            </div>
+            <div class="form-group">
+              <input type="submit" class="form-control edited submit" value="保存">
+            </div>
+          </form>
+        </div>
+        <% if (updateErr) { %>
+          <script>
+            $('#setting-tab a[href="#account"]').tab('show');
+          </script>
+            <button class="label label-danger updateErr"><%= updateErr %></button>
+        <% } %>
+        <% if (success) { %>
+          <script>
+            $('#setting-tab a[href="#account"]').tab('show');
+          </script>
+            <button class="label label-danger updateErr"><%= success %></button>
+        <% } %>            
+      </div>   
+    </div>
+    <%- include ../common/footer %>
+  </div>
+  <script>
+    $('#setting-tab a').click(function (e) {
+      e.preventDefault();
+      $(this).tab('show');
+    });
+    $('.show_hidden').click(function () {
+      // 这里不这么要写要多写很多遍啊。
+      var to_be_hidden = $(this).parent().siblings('form').children('.form-group').children('.edited');
+      $(to_be_hidden).css({
+        'display': 'block',
+        'margin-top': '20px',
+        'margin-left': '80px'
+      });
+      $('.updateErr').css({'display': 'none'});
+    });
+  </script>
+</body>
+</html>

@@ -47,7 +47,7 @@ exports.findAllAnswerById = function (user_id, callback) {
 
 
 exports.findWholeAnswerById = function (user_id, callback) {
-  Answer.find({ 'author_id': user_id }, function (err, answers) {
+  Answer.find({ 'author_id': user_id }, null, { sort: '-ups_number' }, function (err, answers) {
     var ep = new eventproxy();
     answers.forEach(function(answer) {
       var questionAndAnswer = {};

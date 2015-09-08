@@ -81,3 +81,30 @@ exports.getUserById = function (id, callback) {
 exports.updateAvarar = function (user_id, avatar_path, callback) {
   User.findByIdAndUpdate(user_id, { $set:{ avatar: avatar_path }}, callback);
 };
+
+exports.updateName = function (user_id, user_name, callback) {
+  User.findByIdAndUpdate(user_id, { $set:{ name: user_name }}, callback);
+};
+
+exports.updateEmail = function (user_id, edited_email, callback) {
+  User.find({ email: edited_email }, function (err, email) {
+    if (email.length > 0) {
+      return callback('改邮箱已被注册！');
+    } else {
+      User.findByIdAndUpdate(user_id, { $set:{ email: edited_email }}, callback);
+    }
+  });
+};
+exports.updatePhone = function (user_id, edited_phone, callback) {
+  User.find({ phone: edited_phone }, function (err, phone) {
+    if (phone.length > 0) {
+      return callback('改手机号已被注册！');
+    } else {
+      User.findByIdAndUpdate(user_id, { $set:{ phone: edited_phone }}, callback);
+    }
+  });
+};
+
+exports.updatePassword = function (user_id, edited_password, callback) {
+  User.findByIdAndUpdate(user_id, { $set:{ password: edited_password }}, callback);
+};

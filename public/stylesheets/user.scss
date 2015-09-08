@@ -45,8 +45,14 @@
                 color: #259;
               }
             }
-            .question {
+            .question{
               font-size: 15px;
+            }
+            .question_about {
+              span {
+                font-size: 14px;
+                color: #999;
+              }
             }
           }
         }
@@ -102,5 +108,59 @@
         }
       }
     }
+  }
+}
+
+.setting-user {
+  margin-top: 50px;
+  min-height: 600px;
+  #data {
+
+  }
+  #account {
+
+  }
+  .tab-content {
+    margin-bottom: 300px;
+    .update {
+      margin-top: 30px;
+      .updateErr {
+        margin-left: 100px;
+        padding: 10px;
+        margin-bottom: 30px;
+        border: none;
+        font-size: 15px;
+      }
+      .info-tab {
+        border-bottom: 1px solid #eee;
+        margin: 30px 0;
+        .user-info {
+          margin-left: 50px;
+          font-size: 17px;
+          .edit-name {
+            margin-left: 30px;
+            font-size: 15px;
+          }
+        }
+        .edited {
+          display: none;
+        }
+        .info {
+          width: 220px;
+        }
+        .submit {
+          width: 60px;
+          background-color: #046BD2;
+          color: white;
+        }
+      }
+    }
+    a {
+      padding: 5px;
+      text-decoration: none;
+      &:hover {
+        background-color: #eff6fa;
+      }
+    } 
   }
 }

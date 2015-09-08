@@ -41,7 +41,7 @@
             </div>
             <div class="answer-question">
               <div class="answer">
-                <a href=""><%= a_to_q.question.title %></a>
+                <a href="/question/<%= a_to_q.question._id %>"><%= a_to_q.question.title %></a>
               </div>
               <div class="question">
                 <%= a_to_q.answer.content.length > 20 ? a_to_q.answer.content.substr(0,20) + '...' : a_to_q.answer.content %></div>
@@ -61,9 +61,12 @@
             </div>
             <div class="answer-question">
               <div class="answer">
-                <a href=""><%= question.title %></a>
+                <a href="/question/<%= question._id %>"><%= question.title %></a>
               </div>
-              <div class="question"><%= question.description %></div>
+              <div class="question_about">
+                <span><%= question.comment_id.length %>条评论</span>
+                <span>创建于<%= question.create_at_ago() %></span>
+              </div>
             </div>
             <div style="clear:both;"></div>
           </div>

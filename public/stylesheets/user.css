@@ -50,6 +50,10 @@
 .home-user .user-infomation .frame .frame-body .frame-answers .answer-question .question {
   font-size: 15px;
 }
+.home-user .user-infomation .frame .frame-body .frame-answers .answer-question .question_about span {
+  font-size: 14px;
+  color: #999;
+}
 .home-user .user-introduction {
   max-width: 220px;
 }
@@ -99,4 +103,52 @@
   text-align: center;
   background-color: #000;
   color: white;
+}
+
+.setting-user {
+  margin-top: 50px;
+  min-height: 600px;
+}
+.setting-user .tab-content {
+  margin-bottom: 300px;
+}
+.setting-user .tab-content .update {
+  margin-top: 30px;
+}
+.setting-user .tab-content .update .updateErr {
+  margin-left: 100px;
+  padding: 10px;
+  margin-bottom: 30px;
+  border: none;
+  font-size: 15px;
+}
+.setting-user .tab-content .update .info-tab {
+  border-bottom: 1px solid #eee;
+  margin: 30px 0;
+}
+.setting-user .tab-content .update .info-tab .user-info {
+  margin-left: 50px;
+  font-size: 17px;
+}
+.setting-user .tab-content .update .info-tab .user-info .edit-name {
+  margin-left: 30px;
+  font-size: 15px;
+}
+.setting-user .tab-content .update .info-tab .edited {
+  display: none;
+}
+.setting-user .tab-content .update .info-tab .info {
+  width: 220px;
+}
+.setting-user .tab-content .update .info-tab .submit {
+  width: 60px;
+  background-color: #046BD2;
+  color: white;
+}
+.setting-user .tab-content a {
+  padding: 5px;
+  text-decoration: none;
+}
+.setting-user .tab-content a:hover {
+  background-color: #eff6fa;
 }

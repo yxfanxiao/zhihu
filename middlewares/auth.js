@@ -20,10 +20,20 @@ exports.authUser = function (req, res, next) {
     }
     // 不记住密码时，登录后从这里通过
     if (req.session.user) {
-      res.locals.user = req.session.user;
+      User.getUserById(req.session.user._id, function (err, user) {
+        res.locals.user = req.session.user = user;
+        return next();
+      });
+    } else {
+      // 注销后，req.session.user=null
       return next();
-    }  
-    // 注销后，req.session.user=null
-    return next();
+    }
   }
+};
+
+exports.userRequired = function (req, res, next) {
+  if (!req.session || !req.session.user) {
+    return res.status(403).send('forbidden!请先登录！');
+  }
+  next();
 };

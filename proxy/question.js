@@ -39,5 +39,5 @@ exports.findAllQuestionsByUserId = function (user_id, callback) {
 
 // 用户发布的所有问题
 exports.findQuestionsByUserId = function (user_id, callback) {
-  Question.find({ 'author_id': user_id }, callback);
+  Question.find({ 'author_id': user_id }, null, { sort: '-pv' }, callback);
 }
