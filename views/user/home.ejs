@@ -41,7 +41,7 @@
             </div>
             <div class="answer-question">
               <div class="answer">
-                <a href="/question/<%= a_to_q.question._id %>"><%= a_to_q.question.title %></a>
+                <a href="/question/<%= a_to_q.question._id %>?answerId=<%= a_to_q.answer._id %>#answer-content-top-<%= a_to_q.answer._id %>"><%= a_to_q.question.title %></a>
               </div>
               <div class="question">
                 <%= a_to_q.answer.content.length > 20 ? a_to_q.answer.content.substr(0,20) + '...' : a_to_q.answer.content %></div>

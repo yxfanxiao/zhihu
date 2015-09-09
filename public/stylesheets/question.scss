@@ -93,11 +93,14 @@ body {
           color: #999;
           .sort-by-vote {
             padding: 3px 10px;
+            color: #999;
+          }
+          .sort {
+            padding: 3px 10px;
+            text-decoration: none;
           }
           .sort-by-time {
-            padding: 3px 10px;
             display: none;
-            text-decoration: none;
           }
         }
       }
@@ -148,11 +151,11 @@ body {
       ul {
         padding-left: 10px; 
         li {
-          margin-right: 10px;
           list-style: none;
           line-height: 1.7;
-          display: inline-block;
+          display: block;
           a {
+            margin-right: 10px;
             font-size: 13px;
             word-wrap: break-word;
           }

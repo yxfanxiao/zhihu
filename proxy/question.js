@@ -26,9 +26,8 @@ exports.findQuestionByTopic = function (topic, callback) {
   topic.forEach(function (question) {
     findQuestionNoPvById(question.question_id, ep.done('find_question'));    
   });
-  ep.fail(callback);
   ep.after('find_question', topic.length, function (questions) {
-    return callback(null, questions);
+    callback(null, questions);
   });
 };
 
@@ -41,3 +40,19 @@ exports.findAllQuestionsByUserId = function (user_id, callback) {
 exports.findQuestionsByUserId = function (user_id, callback) {
   Question.find({ 'author_id': user_id }, null, { sort: '-pv' }, callback);
 }
+
+
+// 查询话题相关问题
+exports.findRelatedQuestions = function (tags, question_id, callback) {
+  Question
+    .where('tags').in(tags)
+    .where('_id').ne([question_id])
+    .limit(5)
+    .sort('-create_at')
+    .exec(callback);
+};
+
+exports.search =  function (search, callback) {
+  var reg = new RegExp(search, 'i');
+  Question.find({ title: reg }, callback);
+};

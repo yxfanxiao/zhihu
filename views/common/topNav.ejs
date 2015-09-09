@@ -3,9 +3,16 @@
   <div class="navbar navbar-default navbar-fixed-top  navbar-zhihu">
     <div class="navbar-header"><a href="/" class="navbar-brand brand-zhihu">知乎</a></div>
     <div class="navbar-form navbar-left">
+      <form action="/search" method="get">
+        <div class="form-group zhihu-search">
+          <input type="text" class="form-control" name="search" id="zhihu-search-content" placeholder="搜索话题、问题或人…">
+          <button class="glyphicon glyphicon-search zhihu-search-button"></button>
+        </div>
+      </form>
+    </div>
+    <div class="navbar-form navbar-left">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="搜索话题、问题或人…">
-        <button class="form-control top-navbar-ask" data-toggle="modal" data-target="#submit_question">提问</button>
+        <button class="form-control top-navbar-ask" data-toggle="modal"  style="float:left;" data-target="#submit_question">提问</button>
       </div>
     </div>
     <ul class="nav navbar-nav">

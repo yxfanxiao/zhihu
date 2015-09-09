@@ -3,6 +3,20 @@
   width: 100%;
   height:50px;
   .navbar-zhihu {
+    .navbar-form {
+      .zhihu-search {
+        position: relative;
+        button {
+          position: absolute;
+          right: 0;
+          margin-right: 5px;
+          top: 9px;
+          text-align: center;
+          background-color: transparent;
+          border: none;
+        }
+      }
+    }
     background-color: #0661bd;
     padding-left: 16%;
     /*padding-right: 16%;*/

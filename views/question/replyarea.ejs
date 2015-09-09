@@ -12,7 +12,7 @@
       </div>
       <form action="/question/<%= question._id %>/answer" class="write-answer-content" method="post">
         <div class="form-group">
-          <textarea name="answer" class="form-control" id="textarea-answer" rows="8" placeholder="写下你的回答…上传图片功能已做，然而这里挖下了一个富文本编辑器的坑~~"></textarea>
+          <textarea name="answer" class="form-control" id="textarea-answer" rows="8" placeholder="写下你的回答…"></textarea>
         </div>
         <% if (answerErr) { %>
           <label for="textarea-answer" class="label-danger" style="color:white;font-size:20px;border-radius:20px;padding:0 8px;"><span class="glyphicon glyphicon-exclamation-sign"></span>&nbsp;&nbsp;<%= answerErr %></label>

@@ -14,6 +14,7 @@ router.post('/register', sign.register);                                   // �
 router.post('/login', sign.login);                                         // 登录页
 router.get('/logout', sign.logout);                                        // 登出页
 router.get('/index', index.index);                                         // 主页
+router.get('/search', index.search);                                       // 搜索
 
 // 提问
 router.post('/question', auth.userRequired, question.post);                // 发布问题
@@ -30,6 +31,7 @@ router.put('/answer/:a_id/down', answer.cancelDown);                       // �
 
 // 话题
 router.get('/topic', topic.getAll);                                        // 得到话题
+router.get('/topic/:tag', topic.tag);                                      // 具体话题          
 
 // 用户
 router.get('/home', auth.userRequired, user.home);                         // 用户主页

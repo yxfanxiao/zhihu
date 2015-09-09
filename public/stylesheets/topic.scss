@@ -13,7 +13,7 @@
     min-height: 50px;
     border-left: 2px solid #eee;
     margin: 20px 0;
-    .left-tag {
+    .tag {
       margin-left: 30px;
       font-size: 15px;
       padding: 5px 10px;
@@ -21,11 +21,14 @@
       color: white;
       float: left;
       border-radius: 10%;
-    }
-    .right-question {
-      margin-top: 25px;
-      margin-left: 100px;
-      font-size: 17px;
+      text-decoration: none;
+      margin-bottom: 30px;
+    } 
+    .question {
+      padding: 10px 30px;
+      .question-title {
+        font-size: 21px;
+      }
       .question-pv {
         color: #999;
         font-size: 13px;

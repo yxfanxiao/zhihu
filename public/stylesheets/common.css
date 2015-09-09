@@ -7,6 +7,18 @@
   padding-left: 16%;
   /*padding-right: 16%;*/
 }
+.top-navbar .navbar-zhihu .navbar-form .zhihu-search {
+  position: relative;
+}
+.top-navbar .navbar-zhihu .navbar-form .zhihu-search button {
+  position: absolute;
+  right: 0;
+  margin-right: 5px;
+  top: 9px;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+}
 .top-navbar .navbar-zhihu .brand-zhihu {
   color: white;
   font-size: 2em;

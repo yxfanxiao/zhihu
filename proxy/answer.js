@@ -10,11 +10,14 @@ exports.newAnswerSave = function (question_id, author_id, author_name, author_av
   answer.author_name = author_name;
   answer.author_avatar = author_avatar;
   answer.content = content;
-  answer.save(callback);
+  answer.save(function (err, answer) {
+    Question.findByIdAndUpdate(question_id, { $push: { comment_id: author_id }}, callback);
+  });
 };
 
-exports.findAnswerByQuestionId = function (question_id, callback) {
-  Answer.find({ 'question_id': question_id }, callback);
+exports.findAnswerByQuestionId = function (question_id, query, callback) {
+  Answer.find({ 'question_id': question_id }, null, query, callback);
+  // Answer.find({ 'question_id': question_id }, null, { sort: '-create_at' }, callback);
 };
 
 // 搜索是否回答过这个问题

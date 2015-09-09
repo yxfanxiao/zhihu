@@ -15,7 +15,7 @@
   border-left: 2px solid #eee;
   margin: 20px 0;
 }
-.topic-zhihu .topic .left-tag {
+.topic-zhihu .topic .tag {
   margin-left: 30px;
   font-size: 15px;
   padding: 5px 10px;
@@ -23,13 +23,16 @@
   color: white;
   float: left;
   border-radius: 10%;
+  text-decoration: none;
+  margin-bottom: 30px;
 }
-.topic-zhihu .topic .right-question {
-  margin-top: 25px;
-  margin-left: 100px;
-  font-size: 17px;
+.topic-zhihu .topic .question {
+  padding: 10px 30px;
 }
-.topic-zhihu .topic .right-question .question-pv {
+.topic-zhihu .topic .question .question-title {
+  font-size: 21px;
+}
+.topic-zhihu .topic .question .question-pv {
   color: #999;
   font-size: 13px;
   margin-left: 15px;

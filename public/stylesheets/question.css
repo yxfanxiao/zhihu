@@ -91,11 +91,14 @@ body {
 }
 .question-zhihu .left-content .question-answer .question-answer-top .answer-sort .sort-by-vote {
   padding: 3px 10px;
+  color: #999;
+}
+.question-zhihu .left-content .question-answer .question-answer-top .answer-sort .sort {
+  padding: 3px 10px;
+  text-decoration: none;
 }
 .question-zhihu .left-content .question-answer .question-answer-top .answer-sort .sort-by-time {
-  padding: 3px 10px;
   display: none;
-  text-decoration: none;
 }
 .question-zhihu .left-content .write-answer {
   padding: 20px 0;
@@ -145,12 +148,12 @@ body {
   padding-left: 10px;
 }
 .question-zhihu .right-content .related-question ul li {
-  margin-right: 10px;
   list-style: none;
   line-height: 1.7;
-  display: inline-block;
+  display: block;
 }
 .question-zhihu .right-content .related-question ul li a {
+  margin-right: 10px;
   font-size: 13px;
   word-wrap: break-word;
 }

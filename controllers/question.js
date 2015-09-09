@@ -46,13 +46,17 @@ exports.post = function (req, res, next) {
 
 // 查看问题
 exports.view = function (req, res, next) {
-    var user = req.session.user,
-        question_id = req.params.q_id;
-    Question.findQuestionById(question_id, function (err, question) {
-      if (err) {
-        return res.render404('你似乎来到了没有知识存在的荒原……');
-      }
-      Answer.findAnswerByQuestionId(question_id, function (err, answers) {
+  var user = req.session.user,
+      question_id = req.params.q_id;
+  res.locals.to_appointed_answer = req.query.answerId;
+  var sort = res.locals.sort = req.query.sort || 'ups';
+  Question.findQuestionById(question_id, function (err, question) {
+    if (err) {
+      return res.render404('你似乎来到了没有知识存在的荒原……');
+    }
+    Question.findRelatedQuestions(question.tags, question._id, function (err, relatedQuestions) {
+      var query = sort == 'ups' ? { sort: '-ups_number' } : { sort: '-creat_at' };
+      Answer.findAnswerByQuestionId(question_id, query, function (err, answers) {
         if (err) {
           return res.render404('你似乎来到了没有知识存在的荒原……');
         }
@@ -61,6 +65,7 @@ exports.view = function (req, res, next) {
             question: question,
             answerErr: req.flash('answerErr').toString(),
             answers: answers,
+            relatedQuestions: relatedQuestions,
             err: req.flash('err').toString()
           });
         }
@@ -69,13 +74,13 @@ exports.view = function (req, res, next) {
             isDown = [];
         answers.forEach(function(answer, index) {
           answer.ups.forEach(function(up) {
-            if (up == user_id) {
+            if (up.toString() == user_id.toString()) {
               isUp[index] = true;
               return;
             }
           });
           answer.downs.forEach(function(down) {
-            if (down == user_id) {
+            if (down.toString() == user_id.toString()) {
               isDown[index] = true;
               return;
             }
@@ -87,19 +92,18 @@ exports.view = function (req, res, next) {
           }
           return res.render('question/question', {
             question: question,
-            // 图片上传之后再补进去
-            // uploadPicErr: req.flash('uploadPicErr').toString(),
-            // pic: req.flash('pic').toString(),
-            answerErr: req.flash('answerErr').toString(),
             answers: answers,
             myAnswer: answer,
-            err: req.flash('err').toString(),
             isUp: isUp,
-            isDown: isDown
+            isDown: isDown,
+            relatedQuestions: relatedQuestions,
+            answerErr: req.flash('answerErr').toString(),
+            err: req.flash('err').toString()
           });
         });
       });
     });
+  });
 };
 
 // 上传文件-图片

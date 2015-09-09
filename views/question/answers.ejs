@@ -34,7 +34,7 @@
   <% }); %>  
 <% } else { %>
   <% answers.forEach(function (answer, index) { %>
-    <div class="answer-content">
+    <div class="answer-content"  id="answer-content-<%= answer._id %>">
       <% if(isUp[index] !== undefined) { %>
         <div class="answer-left">
           <div class="up" data-answer="<%= answer._id %>" data-isup="true" data-isdown="false" style="background-color:#698ebf;color:white;">
@@ -87,4 +87,19 @@
         </div>
     </div>
   <% }); %>
+<% } %>
+
+<% if (to_appointed_answer) { %>
+<script>
+    var content_body_id = '#answer-content-' + '<%= to_appointed_answer %>';
+    $(content_body_id).css({
+      'background-color': '#FCFF86',
+      'transition': 'all 1s linear'
+    });
+    setTimeout(function () {
+      $(content_body_id).css({
+        'background-color': 'transparent'
+      });
+    }, 1000);   
+</script>
 <% } %>

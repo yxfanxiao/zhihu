@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Topic</title>
+  <title>Tag</title>
   <link rel="stylesheet" href="/stylesheets/bootstrap.css">
   <script type="text/javascript" src="/javascripts/jquery-2.1.4.js"></script>
   <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
@@ -15,11 +15,15 @@
   <div class="topic-zhihu col-md-5 col-md-offset-2">
     <div class="topic-top">
       <span class="glyphicon glyphicon-th-list"></span>
-      <span class="h2">话题广场</span>
+      <span class="h2"><%= tag %></span>
     </div>  
     <div class="topic">
-      <% tags.forEach(function (tag, index) { %>  
-        <a href="/topic/<%= tag %>" class="tag"><%= tag %></a>
+      <% questions.forEach(function (question, index) { %> 
+      <div class="question">
+        <a href="/question/<%= question._id %>" class="question-title"><%= question.title %>
+        </a>
+        <span class="question-pv"><%= question.pv %>次浏览</span>
+      </div> 
       <% }); %>  
     </div>  
   </div> 

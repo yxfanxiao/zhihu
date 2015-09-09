@@ -104,3 +104,11 @@ var _ = require('lodash')
 
 // var reg = new RegExp('[.](jpg|png|gif)$');
 // console.log(reg.test('1080p壁纸.jpg'))
+
+
+
+
+
+// var a = [{a:1,b:2},{a:1,b:2},{a:1,b:3}];
+var a = [1,2,2]
+console.log(_.uniq(a))

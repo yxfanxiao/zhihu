@@ -11,3 +11,15 @@ exports.index = function (req, res, next) {
     err: req.flash('err').toString()
   });
 };
+
+// 简单查询
+exports.search = function (req, res, next) {
+  var search = req.query.search;
+  Question.search(search, function (err, questions) {
+    return res.render('question/search', {
+      err: req.flash('err').toString(),
+      questions: questions,
+      search: search
+    });
+  });
+};

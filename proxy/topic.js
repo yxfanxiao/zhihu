@@ -1,5 +1,6 @@
 var models = require('../models');
 var Topic = models.Topic;
+var Question = models.Question;
 var eventproxy = require('eventproxy');
 
 
@@ -26,13 +27,41 @@ var getAll = exports.getAll =  function (callback) {
       });
     });
     ep.after('find_questions', tags.length, function (topics) {
-      callback(null, topics, tags);
+      callback(err, topics, tags);
     });
   });
 };
 
-// 得到每个tag下的所有问题,每个tag最多3个问题
+// 得到每个tag下最新的3个问题
 var findQuestionByTag = exports.findQuestionByTag = function (tag, callback) {
-  Topic.find({ 'tag': tag }, null, { limit: 3, sort: '-create_at' }, callback);
+  // Topic.find({ 'tag': tag }, null, { limit: 3, sort: '-create_at' }, callback);
+  Topic.find({ 'tag': tag }, null, { limit: 3 }, callback);
 };
 
+// 由tag得到所有问题
+exports.findQuestionsByTag = function (tag, callback) {
+  Question
+    .where('tags').in([tag])
+    .sort('-pv')
+    .exec(callback);
+};
+
+
+// 查询话题相关问题
+exports.findRelatedQuestions = function (tags, callback) {
+  Topic
+    .where('tag').in(tags)
+    .limit(5)
+    .sort('-create_at')
+    .exec(callback);
+};
+
+
+exports.getAllTag = function (callback) {
+  Topic.distinct('tag', function (err, tags) {
+    if (err) {
+      return callback(err);
+    }
+    callback(err, tags);
+  }); 
+};
