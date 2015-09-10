@@ -11,8 +11,9 @@ var eventproxy = require('eventproxy');
 //       Question.findQuestionByTopic(topic, ep.done('get_questions'));
 //     });
 //     ep.after('get_questions', topics.length, function (list) {
-//       // console.log(tags)
-//       // console.log(list)
+//       console.log(topics.length)
+//       console.log(tags)
+//       console.log(list)
 //       return res.render('topic/topic', {
 //         topics: list,
 //         tags: tags,

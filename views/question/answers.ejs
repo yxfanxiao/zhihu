@@ -1,7 +1,7 @@
 
 <% if (!user) { %>
   <% answers.forEach(function (answer, index) { %>
-    <div class="answer-content">
+    <div class="answer-content" id="answer-content-top-<%= answer._id %>">
         <div class="answer-left">
           <div class="up" data-answer="<%= answer._id %>" data-isup="false" data-isdown="false">
             <span class="glyphicon glyphicon-triangle-top"></span>
@@ -11,7 +11,7 @@
             <span class="glyphicon glyphicon-triangle-bottom"></span>
           </div>
         </div>                 
-        <div class="answer-content-top" id="answer-content-top-<%= answer._id %>">
+        <div class="answer-content-top">
           <span class="h5" style="font-weight:bold;"><%= answer.author_name %></span>
           <img class="small_avatar pull-right" src="<%= answer.author_avatar %>" alt="头像">
         </div>
@@ -28,13 +28,13 @@
               <% } %>
             </span>
           </a>
-          <a href="">添加评论</a>
+          <a href="#">添加评论</a>
         </div>
     </div>
   <% }); %>  
 <% } else { %>
   <% answers.forEach(function (answer, index) { %>
-    <div class="answer-content"  id="answer-content-<%= answer._id %>">
+    <div class="answer-content" id="answer-content-top-<%= answer._id %>">
       <% if(isUp[index] !== undefined) { %>
         <div class="answer-left">
           <div class="up" data-answer="<%= answer._id %>" data-isup="true" data-isdown="false" style="background-color:#698ebf;color:white;">
@@ -83,7 +83,7 @@
               <% } %>
             </span>
           </a>
-          <a href="">添加评论</a>
+          <a href="#">添加评论</a>
         </div>
     </div>
   <% }); %>
@@ -91,7 +91,7 @@
 
 <% if (to_appointed_answer) { %>
 <script>
-    var content_body_id = '#answer-content-' + '<%= to_appointed_answer %>';
+    var content_body_id = '#answer-content-body-' + '<%= to_appointed_answer %>';
     $(content_body_id).css({
       'background-color': '#FCFF86',
       'transition': 'all 1s linear'

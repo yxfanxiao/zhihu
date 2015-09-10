@@ -105,10 +105,45 @@ var _ = require('lodash')
 // var reg = new RegExp('[.](jpg|png|gif)$');
 // console.log(reg.test('1080p壁纸.jpg'))
 
+function scope (num) {
+    // console.log(this)
+  return function () {
+    // console.log(this)
+    console.log(num)
+  };
+}
+var create = scope(1);
+var result = create();
+
+// var obj = {
+//   a: 1,
+//   b: function () {
+//       return function () {
+//         return this 
+//       }
+//     },
+//   c: function () {
+//     return this
+//   }
+// }
+// console.log(obj.b()())
+// console.log(obj.c())
 
 
 
+// !function (a) {
+//   console.log(arguments);
+// }(1,2)
 
-// var a = [{a:1,b:2},{a:1,b:2},{a:1,b:3}];
-var a = [1,2,2]
-console.log(_.uniq(a))
+
+// !function foo () {
+//   function bar () {
+//     return 1;
+//   }
+//   !function test () {
+//     console.log(bar());
+//     function bar () {
+//       return 2;
+//     }
+//   }();
+// }();

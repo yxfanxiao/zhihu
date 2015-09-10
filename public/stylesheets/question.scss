@@ -34,6 +34,10 @@ body {
         min-height: 100px;
         /*padding-bottom: 20px;*/
         border-bottom: 1px solid #eee;
+        &:target {
+          margin-top: -55px;
+          padding-top: 55px;
+        }
         .answer-content-top {
           margin-bottom: 10px;
         }

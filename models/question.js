@@ -10,9 +10,10 @@ var QuestionSchema = new Schema({
   tags: { type: Array },                                 // 标签
   create_at: { type: Date, default: Date.now },
   update_at: { type: Date, default: Date.now },
-  comment_id: [{ type: ObjectId }],
+  comment_id: [{ type: ObjectId }],                     // 回答问题的人
   deleted: { type: Boolean, default: false },           // 软删除
-  pv: { type: Number, default: 0 }
+  pv: { type: Number, default: 0 },
+  focus_id: [{ type: ObjectId }]                        // 关注问题的人
 });
 
 QuestionSchema.plugin(BaseModel);
