@@ -2,6 +2,7 @@ var configure = require('../configure');
 var _ = require('lodash');
 var Question = require('../proxy').Question;
 var Answer = require('../proxy').Answer;
+var User = require('../proxy').User;
 var Topic = require('../proxy').Topic;
 var upload = require('../common/upload').upload;
 var eventproxy = require('eventproxy');
@@ -54,54 +55,74 @@ exports.view = function (req, res, next) {
     if (err) {
       return res.render404('你似乎来到了没有知识存在的荒原……');
     }
-    Question.findRelatedQuestions(question.tags, question._id, function (err, relatedQuestions) {
-      var query = sort == 'ups' ? { sort: '-ups_number' } : { sort: '-creat_at' };
-      Answer.findAnswerByQuestionId(question_id, query, function (err, answers) {
+    var ep = new eventproxy();
+    ep.all('relatedQuestions', 'answers', function (relatedQuestions, answers) {
+      if (!user) {
+        return res.render('question/question', {
+          question: question,
+          answerErr: req.flash('answerErr').toString(),
+          answers: answers,
+          relatedQuestions: relatedQuestions,
+          err: req.flash('err').toString()
+        });
+      }
+      var user_id = user._id;
+      var isUp = [],
+          isDown = [];
+      answers.forEach(function (answer, index) {
+        answer.ups.forEach(function(up) {
+          if (up.toString() == user_id.toString()) {
+            isUp[index] = true;
+            return;
+          }
+        });
+        answer.downs.forEach(function (down) {
+          if (down.toString() == user_id.toString()) {
+            isDown[index] = true;
+            return;
+          }
+        });
+      }); 
+      var proxy = new eventproxy();
+      proxy.all('answer', 'isFocus', function (answer, isFocus) {
+        return res.render('question/question', {
+          question: question,
+          answers: answers,
+          myAnswer: answer,
+          isFocus: isFocus,
+          isUp: isUp,
+          isDown: isDown,
+          relatedQuestions: relatedQuestions,
+          answerErr: req.flash('answerErr').toString(),
+          err: req.flash('err').toString()
+        });
+      });
+      // 查询是否已回答过问题
+      Answer.findIfHasAnswered(question_id, user._id, function (err, answer) {
         if (err) {
           return res.render404('你似乎来到了没有知识存在的荒原……');
         }
-        if (!user) {
-          return res.render('question/question', {
-            question: question,
-            answerErr: req.flash('answerErr').toString(),
-            answers: answers,
-            relatedQuestions: relatedQuestions,
-            err: req.flash('err').toString()
-          });
-        }
-        var user_id = user._id;
-        var isUp = [],
-            isDown = [];
-        answers.forEach(function(answer, index) {
-          answer.ups.forEach(function(up) {
-            if (up.toString() == user_id.toString()) {
-              isUp[index] = true;
-              return;
-            }
-          });
-          answer.downs.forEach(function(down) {
-            if (down.toString() == user_id.toString()) {
-              isDown[index] = true;
-              return;
-            }
-          });
-        });        
-        Answer.findIfHasAnswered(question_id, user._id, function (err, answer) {
-          if (err) {
-            return res.render404('你似乎来到了没有知识存在的荒原……');
-          }
-          return res.render('question/question', {
-            question: question,
-            answers: answers,
-            myAnswer: answer,
-            isUp: isUp,
-            isDown: isDown,
-            relatedQuestions: relatedQuestions,
-            answerErr: req.flash('answerErr').toString(),
-            err: req.flash('err').toString()
-          });
-        });
+        proxy.emit('answer', answer);
       });
+      // 查询是否已关注过问题
+      // 表question的查询量比表user大，所有这里用表user
+      Question.findIfHasFocus(user._id, question_id, function (err, user) {
+        var isFocus = false;
+        if (user.length > 0) {
+          isFocus = true;
+        }
+        proxy.emit('isFocus', isFocus);
+      });
+    }); 
+    // 找与该问题tag相关的问题
+    Question.findRelatedQuestions(question.tags, question._id, ep.done('relatedQuestions'));
+    // 排序
+    var query = sort == 'ups' ? { sort: '-ups_number' } : { sort: '-creat_at' };
+    Answer.findAnswerByQuestionId(question_id, query, function (err, answers) {
+      if (err) {
+        return res.render404('你似乎来到了没有知识存在的荒原……');
+      }
+      ep.emit('answers', answers);
     });
   });
 };
@@ -118,3 +139,27 @@ exports.uploadPic = function (req, res, next) {
   });
 };
 
+// status 500，查了2个小时，原来没写req，res，日了狗！
+exports.focusOnQuestion = function (req, res, next) {
+  var question_id = req.params.q_id,
+      user_id = req.params.u_id;
+  Question.focusOnQuestion(user_id, question_id, function (err, question) {
+    if (question) {
+      res.send({
+        ok: 1
+      });
+    }
+  });
+};
+
+exports.unfocusOnQuestion = function (req, res, next) {
+  var question_id = req.params.q_id,
+      user_id = req.params.u_id;
+  Question.unfocusOnQuestion(user_id, question_id, function (err, question) {
+    if (question) {
+      res.send({
+        ok: 1
+      });
+    }
+  });
+};

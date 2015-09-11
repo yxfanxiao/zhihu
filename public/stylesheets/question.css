@@ -32,8 +32,8 @@ body {
   border-bottom: 1px solid #eee;
 }
 .question-zhihu .left-content .question-answer .answer-content:target {
-  margin-top: -55px;
-  padding-top: 55px;
+  margin-top: -150px;
+  padding-top: 150px;
 }
 .question-zhihu .left-content .question-answer .answer-content .answer-content-top {
   margin-bottom: 10px;

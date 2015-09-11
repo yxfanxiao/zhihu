@@ -10,8 +10,8 @@ var UserSchema = new Schema({
   password: { type: String },
   avatar: { type: String, default: '/images/static/liukanshan.png' },
   create_at: { type: Date, default: Date.now },
-  update_at: { type: Date, default: Date.now },
-  focus_question: [{ type: ObjectId }]                                // 关注的问题
+  update_at: { type: Date, default: Date.now }
+  // focus_question: [{ type: ObjectId }]                                // 关注的问题
 });
 
 UserSchema.plugin(BaseModel);

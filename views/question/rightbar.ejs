@@ -1,6 +1,10 @@
 <div class="focus-on-question">
-  <button class="btn btn-info focus-on-question" data-question="<%= question._id %>">关注</button><br/>
-  <div class="focus-on-question-number"><span>x</span>人关注该问题</div>
+  <% if (isFocus) { %> 
+    <button class="btn btn-info focused-on-question" data-question="<%= question._id %>" data-user="<%= user._id %>" data-isfocus="true">取消关注</button><br/>
+  <% } else { %>
+    <button class="btn btn-info focused-on-question" data-question="<%= question._id %>" data-user="<%= user._id %>"  data-isfocus="false">关注</button><br/>
+  <% } %>
+  <div class="focus-on-question-number"><span><%= question.focus_id.length %></span>人关注该问题</div>
 </div>
 <div class="linked-website">
  <a href="https://cnodejs.org/"><img src="/images/static/cnode_logo.png" alt=""></a> 

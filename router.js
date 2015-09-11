@@ -20,6 +20,10 @@ router.get('/search', index.search);                                       // �
 router.post('/question', auth.userRequired, question.post);                // 发布问题
 router.get('/question/:q_id', question.view);                              // 查看问题
 
+// 关注问题
+router.post('/question/:q_id/focus/:u_id', question.focusOnQuestion);      // 关注问题
+router.post('/question/:q_id/unfocus/:u_id', question.unfocusOnQuestion);  // 取消关注问题
+
 // 回答
 router.post('/question/:q_id/answer', answer.answer);                      // 提交回答
 

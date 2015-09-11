@@ -105,15 +105,15 @@ var _ = require('lodash')
 // var reg = new RegExp('[.](jpg|png|gif)$');
 // console.log(reg.test('1080p壁纸.jpg'))
 
-function scope (num) {
-    // console.log(this)
-  return function () {
-    // console.log(this)
-    console.log(num)
-  };
-}
-var create = scope(1);
-var result = create();
+// function scope (num) {
+//     // console.log(this)
+//   return function () {
+//     // console.log(this)
+//     console.log(num)
+//   };
+// }
+// var create = scope(1);
+// var result = create();
 
 // var obj = {
 //   a: 1,
@@ -147,3 +147,36 @@ var result = create();
 //     }
 //   }();
 // }();
+
+
+!function () {
+  for (var i = 0; i < 2; i++) {
+    !function () {
+        console.log(this)
+      setTimeout(function () {
+        console.log(i)
+      }, 1000)
+    }()
+  }
+}()
+
+// !function () {
+//   for (var i = 0; i < 5; i++) {
+//     var a = i;
+//     !function () {
+//       setTimeout(function () {
+//         console.log(a)
+//       }, 1000)
+//     }()
+//   }
+// }()
+
+// !function () {
+//   for (var i = 0; i < 5; i++) {
+//     !function (i) {
+//       setTimeout(function () {
+//         console.log(i)
+//       }, 1000)
+//     }(i)
+//   }
+// }()

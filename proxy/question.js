@@ -56,3 +56,18 @@ exports.search =  function (search, callback) {
   var reg = new RegExp(search, 'i');
   Question.find({ title: reg }, callback);
 };
+
+exports.focusOnQuestion = function (user_id, question_id, callback) {
+  Question.findByIdAndUpdate(question_id, { $push:{ focus_id: user_id }}, callback);
+}
+exports.unfocusOnQuestion = function (user_id, question_id, callback) {
+  Question.findByIdAndUpdate(question_id, { $pull:{ focus_id: user_id }}, callback);
+}
+
+
+exports.findIfHasFocus = function (user_id, qusetion_id, callback) {
+  Question
+    .find({ _id: qusetion_id })
+    .where('focus_id').in([user_id])
+    .exec(callback);
+};

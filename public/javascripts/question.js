@@ -35,8 +35,36 @@ $(function () {
   });
 
   // 关注问题
-  $('.focus-on-question').click(function () {
-    
+  $('.focused-on-question').click(function () {
+    var focus_button = $(this);
+    var isFocus = focus_button.data('isfocus'),
+        question_id = focus_button.data('question'),
+        user_id = focus_button.data('user');
+    if (isFocus) {
+      $.ajax({
+        type: 'post',
+        url: '/question/'+ question_id + '/unfocus/' + user_id,
+        dataType: 'json'
+      }).done(function (data) {
+        if (data.ok == 1) {
+          focus_button.text('关注');
+          focus_button.data('isfocus', false);
+        }}).fail(function () {
+          alert('请先登录');
+        });      
+    } else {
+      $.ajax({
+        type: 'post',
+        url: '/question/'+ question_id + '/focus/' + user_id,
+        dataType: 'json'
+      }).done(function (data) {
+        if (data.ok == 1) {
+          focus_button.text('取消关注');
+          focus_button.data('isfocus', true);
+        }}).fail(function () {
+          alert('请先登录');
+        });    
+      }  
   });
 
   // 诶，“点赞功能”，感觉写了一晚上屎一样的代码！！心情都变low了。
