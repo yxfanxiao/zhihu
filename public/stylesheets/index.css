@@ -1,0 +1,91 @@
+.index-zhihu {
+  margin-top: 30px;
+  /*border: 1px solid black;*/
+}
+.index-zhihu .left-content .tag-top {
+  padding: 10px 0;
+  border-bottom: 2px solid #eee;
+}
+.index-zhihu .left-content .tag-top .glyphicon {
+  font-size: 17px;
+}
+.index-zhihu .left-content .pushes {
+  margin: 20px 0;
+  position: relative;
+}
+.index-zhihu .left-content .pushes .push {
+  min-height: 100px;
+  height: auto;
+  margin: 20px 0;
+  border-bottom: 1px solid #eee;
+  padding-left: 60px;
+}
+.index-zhihu .left-content .pushes .push .left-content {
+  float: left;
+  position: relative;
+  width: 60px;
+  right: 60px;
+  margin-left: -100%;
+}
+.index-zhihu .left-content .pushes .push .left-content img {
+  width: 40px;
+  height: auto;
+  margin-bottom: 3px;
+}
+.index-zhihu .left-content .pushes .push .left-content .ups {
+  text-align: center;
+  height: 20px;
+  width: 40px;
+  background-color: #eff6fa;
+}
+.index-zhihu .left-content .pushes .push .right-content {
+  float: left;
+  width: 100%;
+  position: relative;
+}
+.index-zhihu .left-content .pushes .push .right-content .question-title {
+  font-size: 17px;
+  margin: 4px 0;
+  color: #259;
+  line-height: 20px;
+  font-weight: bold;
+}
+.index-zhihu .left-content .pushes .push .right-content .answer-content {
+  font-size: 14px;
+  width: 100%;
+  word-wrap: break-word;
+}
+.index-zhihu .left-content .pushes .push .right-content .answer-content a {
+  text-decoration: none;
+  color: #000;
+}
+.index-zhihu .left-content .pushes .push .right-content .answer-content .answer-time {
+  margin-top: 3px;
+  font-size: 13px;
+  color: #999;
+}
+.index-zhihu .left-content .pushes .push .right-content .answer-footer {
+  margin: 8px 0;
+  color: #999;
+  font-size: 12px;
+}
+.index-zhihu .left-content .pushes .push .right-content .answer-footer .glyphicon {
+  font-size: 8px;
+}
+.index-zhihu .left-content .pushes .push .right-content .push-type {
+  color: #999;
+  font-size: 13px;
+}
+.index-zhihu .left-content .pushes .push .right-content .push-type .time {
+  float: right;
+}
+.index-zhihu .right-others #working {
+  margin-top: 30px;
+  width: 100%;
+  height: auto;
+}
+.index-zhihu .right-others #warning {
+  display: block;
+  margin-top: 5px;
+  color: #999;
+}

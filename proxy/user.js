@@ -108,11 +108,3 @@ exports.updatePhone = function (user_id, edited_phone, callback) {
 exports.updatePassword = function (user_id, edited_password, callback) {
   User.findByIdAndUpdate(user_id, { $set:{ password: edited_password }}, callback);
 };
-
-exports.findIfHasFocus = function (user_id, qusetion_id, callback) {
-  // User.findById(user_id, callback);
-  User
-    .find({ _id: user_id })
-    .where('focus_question').in([qusetion_id])
-    .exec(callback);
-};

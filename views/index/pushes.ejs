@@ -1,0 +1,23 @@
+<% pushes.forEach(function (push) { %>
+  <% if (push.push.type == 0) { %>
+    <div class="push">
+      <div class="right-content">
+        <div class="push-type">
+          <span class="user-name"><%= push.answer.author_name %> 回答了该问题</span>
+          <span class="time"><%= push.answer.create_at_ago() %></span>
+        </div>
+        <div class="question-title"><a href="/question/<%= push.question._id %>"><%= push.question.title %></a></div>
+        <div class="answer-content">
+          <a href="/question/<%= push.question._id %>?answerId=<%= push.answer._id %>#answer-content-top-<%= push.answer._id %>"><%= push.answer.content %></a>
+          <div class="answer-time">发布于&nbsp;<%= push.answer.update_at_isToday() %></div>
+        </div>
+        <div class="answer-footer"><span class="glyphicon glyphicon-copyright-mark"></span>&nbsp;作者保留权利</div>
+      </div>
+      <div class="left-content">
+        <img src="<%= push.user.avatar %>" alt="">
+        <div class="ups"><%= push.answer.ups_number %></div>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  <% } %>
+<% }); %>

@@ -9,7 +9,7 @@ var PushSchema = new Schema({
   // 1: 关注的人点的赞同
   // 2: 关注的人提的问题
   // 3: 关注的人的回答
-  type: { type: ObjectId },     
+  type: { type: Number },     
   question_id: { type: ObjectId },
   answer_id: { type: ObjectId },
   user_id: { type: ObjectId },

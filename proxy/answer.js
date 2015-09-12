@@ -11,8 +11,14 @@ exports.newAnswerSave = function (question_id, author_id, author_name, author_av
   answer.author_avatar = author_avatar;
   answer.content = content;
   answer.save(function (err, answer) {
-    Question.findByIdAndUpdate(question_id, { $push: { comment_id: author_id }}, callback);
+    Question.findByIdAndUpdate(question_id, { $push: { comment_id: author_id }}, function (err, question) {
+      callback(err, answer);
+    });
   });
+};
+
+exports.findAnswerById = function (answer_id, callback) {
+  Answer.findOne({ _id: answer_id }, callback);
 };
 
 exports.findAnswerByQuestionId = function (question_id, query, callback) {

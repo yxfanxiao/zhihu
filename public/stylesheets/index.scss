@@ -1,0 +1,98 @@
+.index-zhihu {
+  margin-top: 30px;
+  /*border: 1px solid black;*/
+  .left-content {
+    .tag-top {
+      padding: 10px 0;
+      border-bottom: 2px solid #eee;
+      .glyphicon {
+        font-size: 17px;
+      }
+    }
+    .pushes {
+      margin: 20px 0;
+      position: relative;
+      .push {
+        min-height: 100px;
+        height: auto;
+        margin: 20px 0;
+        border-bottom: 1px solid #eee;
+        padding-left: 60px;
+        .left-content {
+          float: left;
+          position: relative;
+          width: 60px;
+          right:60px;
+          margin-left: -100%;
+          img {
+            width: 40px;
+            height: auto;
+            margin-bottom: 3px;
+          }
+          .ups {
+            text-align: center;
+            height: 20px;
+            width: 40px;
+            background-color: #eff6fa;
+          }
+        }
+        .right-content {
+          float: left;
+          width: 100%;
+          position: relative;
+          .question-title {
+            font-size: 17px;
+            margin: 4px 0;
+            color: #259;
+            line-height: 20px;
+            font-weight: bold;
+          }
+          .answer-content {
+            font-size: 14px;
+            width: 100%;
+            word-wrap: break-word;
+            a {
+              text-decoration: none;
+              color: #000;
+            }
+            .answer-time {
+              margin-top: 3px;
+              font-size: 13px;
+              color: #999;
+            }
+          }
+          .answer-footer {
+            margin: 8px 0;
+            color: #999;
+            font-size: 12px;
+            .glyphicon {
+              font-size: 8px;
+            }
+          }
+          .push-type {
+            color: #999;
+            font-size: 13px;
+            .user-name {
+
+            }
+            .time {
+              float: right;
+            }
+          }
+        }
+      }
+    }
+  }
+  .right-others {
+    #working {
+      margin-top: 30px;
+      width: 100%;
+      height: auto;
+    }
+    #warning {
+      display: block;
+      margin-top: 5px;
+      color: #999;
+    }
+  }
+}

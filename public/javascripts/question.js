@@ -37,6 +37,7 @@ $(function () {
   // 关注问题
   $('.focused-on-question').click(function () {
     var focus_button = $(this);
+    var focus_number = $(this).siblings('.focus-on-question-number').children('span');
     var isFocus = focus_button.data('isfocus'),
         question_id = focus_button.data('question'),
         user_id = focus_button.data('user');
@@ -47,7 +48,8 @@ $(function () {
         dataType: 'json'
       }).done(function (data) {
         if (data.ok == 1) {
-          focus_button.text('关注');
+          focus_button.text('关注问题');
+          focus_number.text(parseInt(focus_number.text()) - 1);
           focus_button.data('isfocus', false);
         }}).fail(function () {
           alert('请先登录');
@@ -60,6 +62,7 @@ $(function () {
       }).done(function (data) {
         if (data.ok == 1) {
           focus_button.text('取消关注');
+          focus_number.text(parseInt(focus_number.text()) + 1);
           focus_button.data('isfocus', true);
         }}).fail(function () {
           alert('请先登录');

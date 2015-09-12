@@ -20,6 +20,7 @@ body {
       .question_description {
         margin-top: 13px;
         font-size: 14px;
+        word-wrap: break-word;
         line-height: 1.6;
       }
       .question_footer {
@@ -32,6 +33,7 @@ body {
         position: relative;
         margin: 30px 0;
         min-height: 100px;
+        word-wrap: break-word;
         /*padding-bottom: 20px;*/
         border-bottom: 1px solid #eee;
         &:target {

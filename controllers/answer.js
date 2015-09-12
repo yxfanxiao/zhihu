@@ -1,6 +1,7 @@
 var configure = require('../configure');
 var _ = require('lodash');
 var Answer = require('../proxy').Answer;
+var Push = require('../proxy').Push;
 
 
 exports.answer = function (req, res, next) {
@@ -13,10 +14,14 @@ exports.answer = function (req, res, next) {
     req.flash('answerErr', '提交内容不能为空！');
     return res.redirect('back');
   }
-  Answer.newAnswerSave(question_id, author_id, author_name, author_avatar, content, function (err) {
+  Answer.newAnswerSave(question_id, author_id, author_name, author_avatar, content, function (err, answer) {
     if (err) {
       req.flash('answerErr', '提交回答出错，请重新提交！');
     }
+    // 这里应该做日志记录的~~
+    Push.addPush(0, question_id, answer._id, function (err) {
+      console.log('Push Error:' + err);
+    });
     return res.redirect('back');
   });
 };

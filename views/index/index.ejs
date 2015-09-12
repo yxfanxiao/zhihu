@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>知乎·首页</title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <script type="text/javascript" src="/javascripts/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="/javascripts/bootstrap.js"></script>
+    <script type="text/javascript" src="/javascripts/common.js"></script>
+    <link rel="stylesheet" href="/stylesheets/common.css">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+  </head>
+  <body>
+    <%- include ../common/topNav %>
+    <div class="index-zhihu col-md-8 col-md-offset-2">
+      <div class="left-content col-md-8">
+        <div class="tag-top">
+          <span class="glyphicon glyphicon-th-list"></span>
+          <span class="h4">最新动态</span>
+        </div>
+        <div class="pushes">
+          <% include pushes %>
+        </div>
+      </div>
+      <div class="right-others col-md-4">
+        <img id="working" src="/images/static/working.png" alt="">
+        <span id="warning">抱歉，这边正在紧张的施工…</span>
+      </div>
+    </div>
+  </body>
+</html>

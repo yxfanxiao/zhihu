@@ -13,8 +13,10 @@ require('./user');
 require('./question');
 require('./answer');
 require('./topic');
+require('./push');
 
 exports.User = mongoose.model('User');
 exports.Question = mongoose.model('Question');
 exports.Answer = mongoose.model('Answer');
 exports.Topic = mongoose.model('Topic');
+exports.Push = mongoose.model('Push');

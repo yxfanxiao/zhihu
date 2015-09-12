@@ -62,6 +62,7 @@ exports.view = function (req, res, next) {
           question: question,
           answerErr: req.flash('answerErr').toString(),
           answers: answers,
+          isFocus: false,
           relatedQuestions: relatedQuestions,
           err: req.flash('err').toString()
         });

@@ -1,8 +1,12 @@
 <div class="focus-on-question">
-  <% if (isFocus) { %> 
-    <button class="btn btn-info focused-on-question" data-question="<%= question._id %>" data-user="<%= user._id %>" data-isfocus="true">取消关注</button><br/>
+  <% if (user) { %> 
+    <% if (isFocus) { %> 
+      <button class="btn btn-info focused-on-question" data-question="<%= question._id %>" data-user="<%= user._id %>" data-isfocus="true">取消关注</button><br/>
+    <% } else { %>
+      <button class="btn btn-info focused-on-question" data-question="<%= question._id %>" data-user="<%= user._id %>"  data-isfocus="false">关注问题</button><br/>
+    <% } %>
   <% } else { %>
-    <button class="btn btn-info focused-on-question" data-question="<%= question._id %>" data-user="<%= user._id %>"  data-isfocus="false">关注</button><br/>
+      <button class="btn btn-info focused-on-question" data-question="<%= question._id %>" data-user=""  data-isfocus="false">关注</button><br/>  
   <% } %>
   <div class="focus-on-question-number"><span><%= question.focus_id.length %></span>人关注该问题</div>
 </div>
