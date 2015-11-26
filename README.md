@@ -1,9 +1,6 @@
 # mock-zhihu
 仿の知乎Web。简单模仿。这个项目始于8月25号。<br>
-已经部署在百度云bae上：[仿·知乎](http://zhiihu.duapp.com/)
-
-# 求实习
-江苏普通211 2016届大四学生，今年5月开始自学Web开发（Nodejs+前端），求一份实习。
+(已过期)已经部署在百度云bae上：[仿·知乎](http://zhiihu.duapp.com/)
 
 ## Screenshot
 ![](https://github.com/yxfanxiao/zhihu/raw/master/screenshot.png)
